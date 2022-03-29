@@ -276,6 +276,8 @@ var template = $('#addresssection .addressclass:first').clone();
 // Counter
 var sectionsCount = 1;
 
+var addressline1 = $("input[name='addressline1']");
+
 $('.remove').parent().addClass('toggleButton');
 
 // Add Address
@@ -316,7 +318,6 @@ $('#addresssection').on('click', '.remove', function () {
         $('.remove').parent().removeClass('toggleButton');
     }
 
-    console.log("start" + sectionsCount);
     //fade out section
     $(this).parent().fadeOut(300, function () {
         //remove parent element (main section)

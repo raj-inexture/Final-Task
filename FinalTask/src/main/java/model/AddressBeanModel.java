@@ -8,7 +8,7 @@ public class AddressBeanModel {
 	private String addressline2;
 	private String city;
 	private String state;
-	private int zipcode;
+	private String zipcode;
 
 	public int getId() {
 		return id;
@@ -58,11 +58,11 @@ public class AddressBeanModel {
 		this.state = state;
 	}
 
-	public int getZipcode() {
+	public String getZipcode() {
 		return zipcode;
 	}
 
-	public void setZipcode(int zipcode) {
+	public void setZipcode(String zipcode) {
 		this.zipcode = zipcode;
 	}
 

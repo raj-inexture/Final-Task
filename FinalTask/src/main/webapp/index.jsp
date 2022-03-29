@@ -8,10 +8,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>User Registration</title>
+    <title>Form Validation using JavaScript</title>
 
     <!-- Bootstrap -->
-    <link href="resources/library/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/library/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,27 +35,27 @@
 
 <body>
 
-    <div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
+    <div class="page-wrapper bg-gra-03 p-t-45 p-b-20">
         <div class="wrapper wrapper--w790">
             <div class="card card-5">
                 <div class="card-heading">
                     <h2 class="title">User Registration Form</h2>
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="">
+                    <form method="POST" action="RegistrationServlet">
                         <div class="form-row m-b-55">
-                            <div class="name">Name</div>
+                            <div class="name requiredsign">Name</div>
                             <div class="value">
                                 <div class="row row-space">
                                     <div class="col-2">
                                         <div class="input-group-desc">
-                                            <input class="input--style-5" type="text" name="first_name">
+                                            <input class="input--style-5" type="text" name="firstname">
                                             <label class="label--desc">First Name</label>
                                         </div>
                                     </div>
                                     <div class="col-2">
                                         <div class="input-group-desc">
-                                            <input class="input--style-5" type="text" name="last_name">
+                                            <input class="input--style-5" type="text" name="lastname">
                                             <label class="label--desc">Last Name</label>
                                         </div>
                                     </div>
@@ -63,7 +63,7 @@
                             </div>
                         </div>
                         <div class="form-row m-b-55">
-                            <div class="name">Email ID</div>
+                            <div class="name requiredsign">Email ID</div>
                             <div class="value">
                                 <div class="row row-refine">
                                     <div class="col-9">
@@ -75,24 +75,25 @@
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="name">Gender</div>
+                            <div class="name requiredsign">Gender</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <label class="radio-container m-r-55">Male <input type="radio" name="exist"> <span
-                                            class="checkmark"></span>
+                                    <label class="radio-container m-r-55">Male <input type="radio" name="genderradio" value="Male">
+                                        <span class="checkmark"></span>
                                     </label> <label class="radio-container m-r-55">Female <input type="radio"
-                                            name="exist"> <span class="checkmark"></span>
-                                    </label> <label class="radio-container">Other <input type="radio" name="exist">
+                                            name="genderradio" value="Female"> <span class="checkmark"></span>
+                                    </label> <label class="radio-container">Other <input type="radio"
+                                            name="genderradio" value="Other">
                                         <span class="checkmark"></span>
                                     </label>
                                 </div>
                             </div>
                         </div>
                         <div class="form-row m-b-55">
-                            <div class="name">Date of Birth</div>
+                            <div class="name requiredsign">Date of Birth</div>
                             <div class="value">
                                 <div class="row row-refine">
-                                    <div class="col-9">
+                                    <div class="col-6">
                                         <div class="input-group-desc">
                                             <input class="input--style-5" type="date" name="dob">
                                         </div>
@@ -101,7 +102,7 @@
                             </div>
                         </div>
                         <div class="form-row m-b-55">
-                            <div class="name">Phone</div>
+                            <div class="name requiredsign">Phone</div>
                             <div class="value">
                                 <div class="row row-refine">
                                     <div class="col-3">
@@ -125,7 +126,7 @@
                             <div class="addressclass">
                                 <fieldset>
                                     <div class="form-row m-b-55">
-                                        <div class="name">Address</div>
+                                        <div class="name requiredsign">Address</div>
                                         <div class="value">
                                             <div class="row row-refine">
                                                 <div class="col-12">
@@ -151,7 +152,7 @@
                                         </div>
                                     </div>
                                     <div class="form-row">
-                                        <div class="name">City</div>
+                                        <div class="name requiredsign">City</div>
                                         <div class="value">
                                             <div class="row row-refine">
                                                 <div class="col-6">
@@ -163,11 +164,11 @@
                                         </div>
                                     </div>
                                     <div class="form-row">
-                                        <div class="name">State</div>
+                                        <div class="name requiredsign">State</div>
                                         <div class="value">
                                             <div class="input-group">
                                                 <div class="rs-select2 js-select-simple select--no-search">
-                                                    <select class="stateselect" name="subject" id="states">
+                                                    <select class="stateselect" name="states" id="states">
                                                         <option disabled="disabled" selected="selected">Choose
                                                             option</option>
                                                     </select>
@@ -177,7 +178,7 @@
                                         </div>
                                     </div>
                                     <div class="form-row">
-                                        <div class="name">ZIP/PIN Code</div>
+                                        <div class="name requiredsign">ZIP/PIN Code</div>
                                         <div class="value">
                                             <div class="row row-refine">
                                                 <div class="col-6">
@@ -200,69 +201,85 @@
                                 value="Add New Address Block" onclick="location.href='#'">
                         </div>
                         <div class="form-row">
-                            <div class="name">Technologies</div>
+                            <div class="name requiredsign">User Role</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <div class="rs-select2 js-select-simple select--no-search">
+                                        <select class="role" name="role" id="role">
+                                            <option disabled="disabled" selected="selected">Choose
+                                                User Role</option>
+                                            <option value="Admin">Admin</option>
+                                            <option value="User">User</option>
+                                        </select>
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="name requiredsign">Technologies</div>
                             <div class="value">
                                 <div class="input-group">
                                     <table class="table table-striped table-condensed">
                                         <tr>
                                             <td>
                                                 <label class="checkbox-container m-r-150">HTML<input type="checkbox"
-                                                        name="exist">
+                                                        name="exist" value="HTML">
                                                     <span class="checkspan"></span>
                                                 </label>
                                             </td>
                                             <td><label class="checkbox-container m-r-55">Core Java<input type="checkbox"
-                                                        name="exist"> <span class="checkspan"></span>
+                                                        name="exist" value="Core Java"> <span class="checkspan"></span>
                                                 </label></td>
                                         </tr>
                                         <tr>
                                             <td>
                                                 <label class="checkbox-container">CSS<input type="checkbox"
-                                                        name="exist">
+                                                        name="exist" value="CSS">
                                                     <span class="checkspan"></span>
                                                 </label>
                                             </td>
                                             <td><label class="checkbox-container">JDBC<input type="checkbox"
-                                                        name="exist"> <span class="checkspan"></span>
+                                                        name="exist" value="JDBC"> <span class="checkspan"></span>
                                                 </label></td>
                                         </tr>
                                         <tr>
                                             <td>
                                                 <label class="checkbox-container">JavaScript<input type="checkbox"
-                                                        name="exist">
+                                                        name="exist" value="JavaScript">
                                                     <span class="checkspan"></span>
                                                 </label>
                                             </td>
                                             <td><label class="checkbox-container">Servlet<input type="checkbox"
-                                                        name="exist"> <span class="checkspan"></span>
+                                                        name="exist" value="Servlet"> <span class="checkspan"></span>
                                                 </label></td>
                                         </tr>
                                         <tr>
                                             <td>
                                                 <label class="checkbox-container">Bootstrap<input type="checkbox"
                                                         name="exist">
-                                                    <span class="checkspan"></span>
+                                                    <span class="checkspan" value="Bootstrap"></span>
                                                 </label>
                                             </td>
                                             <td><label class="checkbox-container">JSP<input type="checkbox"
-                                                        name="exist"> <span class="checkspan"></span>
+                                                        name="exist" value="JSP"> <span class="checkspan"></span>
                                                 </label></td>
                                         </tr>
                                         <tr>
                                             <td>
                                                 <label class="checkbox-container">jQuery<input type="checkbox"
-                                                        name="exist">
+                                                        name="exist" value="jQuery">
                                                     <span class="checkspan"></span>
                                                 </label>
                                             </td>
                                             <td><label class="checkbox-container">MySQL<input type="checkbox"
-                                                        name="exist"> <span class="checkspan"></span>
+                                                        name="exist" value="MySQL"> <span class="checkspan"></span>
                                                 </label></td>
                                         </tr>
                                         <tr>
                                             <td>
                                                 <label class="checkbox-container">AJAX<input type="checkbox"
-                                                        name="exist">
+                                                        name="exist" value="AJAX">
                                                     <span class="checkspan"></span>
                                                 </label>
                                             </td>
@@ -272,7 +289,7 @@
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="name">Password</div>
+                            <div class="name requiredsign">Password</div>
                             <div class="value">
                                 <div class="row row-refine">
                                     <div class="col-6">
@@ -284,19 +301,19 @@
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="name">Confirm Password</div>
+                            <div class="name requiredsign">Confirm Password</div>
                             <div class="value">
                                 <div class="row row-refine">
                                     <div class="col-6">
                                         <div class="input-group-desc">
-                                            <input class="input--style-5" type="password" name="password">
+                                            <input class="input--style-5" type="password" name="confirmpassword">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="name">Security Question</div>
+                            <div class="name requiredsign">Security Question</div>
                             <div class="value">
                                 <div class="input-group">
                                     <div class="rs-select2 js-select-simple select--no-search">
@@ -354,10 +371,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group col-md-6">
-                            <label for="email-addresses">Email Address</label>
-                            <input class="form-control form-control-sm" type="text" id="email-addresses">
-                        </div>
                     </form>
                 </div>
             </div>
@@ -365,18 +378,13 @@
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="resources/library/bootstrap/js/bootstrap.min.js"></script>
-
-    <!-- Multi Email JS -->
-    <script src="resources/js/jquery.multi-emails.js"></script>
-
-    <!-- Call for Multi Email JS -->
-    <script>
-        $("#email-addresses").multiEmails()
-    </script>
+    
+    <!-- Custom Script Validation JavaScript -->
+    <script src="resources/js/validation.js"></script>
 
     <!-- Custom Script JavaScript -->
     <script src="resources/js/script.js"></script>

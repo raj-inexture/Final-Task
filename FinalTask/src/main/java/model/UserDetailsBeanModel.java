@@ -1,8 +1,5 @@
 package model;
 
-import java.math.BigInteger;
-import java.util.Date;
-
 public class UserDetailsBeanModel {
 
 	private int userid;
@@ -10,8 +7,8 @@ public class UserDetailsBeanModel {
 	private String lastname;
 	private String email;
 	private String gender;
-	private Date dob;
-	private BigInteger phone;
+	private String dob;
+	private String phone;
 	private String password;
 	private String userrole;
 	private String securityquestion;
@@ -57,19 +54,19 @@ public class UserDetailsBeanModel {
 		this.gender = gender;
 	}
 
-	public Date getDob() {
+	public String getDob() {
 		return dob;
 	}
 
-	public void setDob(Date dob) {
+	public void setDob(String dob) {
 		this.dob = dob;
 	}
 
-	public BigInteger getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setPhone(BigInteger phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 

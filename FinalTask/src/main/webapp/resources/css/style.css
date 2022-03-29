@@ -108,6 +108,7 @@
 }
 
 .col-3,
+.col-4,
 .col-6,
 .col-9,
 .col-12 {
@@ -134,6 +135,26 @@
         -ms-flex: 0 0 35%;
         flex: 0 0 35%;
         max-width: 35%;
+    }
+}
+
+.col-4 {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 33.33%;
+    -moz-box-flex: 0;
+    -ms-flex: 0 0 33.33%;
+    flex: 0 0 33.33%;
+    max-width: 33.33%;
+}
+
+@media (max-width: 767px) {
+    .col-4 {
+        -webkit-box-flex: 0;
+        -webkit-flex: 0 0 40%;
+        -moz-box-flex: 0;
+        -ms-flex: 0 0 40%;
+        flex: 0 0 40%;
+        max-width: 40%;
     }
 }
 
@@ -405,6 +426,10 @@ h6 {
 
 .p-b-50 {
     padding-bottom: 50px;
+}
+
+.p-b-20 {
+    padding-bottom: 20px;
 }
 
 .m-r-45 {
@@ -748,6 +773,11 @@ input {
     left: 0;
 }
 
+.requiredsign:after {
+    content:" *";
+    color: red;
+  }
+
 /* ==========================================================================
      #SELECT2
      ========================================================================== */
@@ -841,7 +871,7 @@ input {
     transform: rotate(-180deg);
 }
 
-.stateselect {
+.stateselect, .role {
     background: #e5e5e5;
     height: 50px;
     -webkit-border-radius: 5px;
@@ -896,7 +926,7 @@ input {
 
 .card-5 .card-body {
     padding: 52px 85px;
-    padding-bottom: 73px;
+    padding-bottom: 45px;
 }
 
 @media (max-width: 767px) {
@@ -934,4 +964,19 @@ input {
     padding: .7rem;
     border-radius: 3px;
     color: #ff0000;
+}
+
+/* -------------------------------------------- */
+
+.forgotpassword {
+    margin: 0;
+    margin-right: 0px;
+    margin-left: 30%;
+    color: black;
+    text-decoration: none;
+}
+
+.error {
+    color: red;
+    font-size: 15px;
 }
