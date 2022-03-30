@@ -1,11 +1,15 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import model.UserDetailsBeanModel;
+import service.LoginUser;
 
 /**
  * Servlet implementation class LoginServlet
@@ -37,6 +41,25 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+
+		UserDetailsBeanModel user = new UserDetailsBeanModel();
+
+		user.setEmail(username);
+		user.setPassword(password);
+
+		user = LoginUser.authenticateUser(user);
+
+		if (user != null) {
+			out.println("Welcome " + user.getFirstname() + " " + user.getLastname());
+		} else {
+			response.sendRedirect("login.jsp");
+		}
 	}
 
 }

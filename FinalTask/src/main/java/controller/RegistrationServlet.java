@@ -60,48 +60,11 @@ public class RegistrationServlet extends HttpServlet {
 		String[] city = request.getParameterValues("city");
 		String[] states = request.getParameterValues("states");
 		String[] zipcode = request.getParameterValues("zipcode");
-		String userrole = request.getParameter("role");
 		String[] technologies = request.getParameterValues("exist");
 		String password = request.getParameter("password");
 		String confirmpassword = request.getParameter("confirmpassword");
 		String securityquestion = request.getParameter("subject");
 		String securityanswer = request.getParameter("security");
-
-//		boolean validate = Validation.validateUser(firstname, lastname, email, gender, dob, phone, userrole, password,
-//				confirmpassword, securityquestion, securityanswer);
-
-//		boolean validate = Validation.checkDemo(city);
-//
-//		out.println("ans" + validate);
-
-		out.println("firstname :" + firstname);
-		out.println("lastname :" + lastname);
-		out.println("email :" + email);
-		out.println("gender :" + gender);
-		out.println("dob :" + dob);
-		out.println("phone :" + phone);
-
-		int i = 0;
-
-		while (i < addressline1.length) {
-			out.println(addressline1[i] + " " + addressline2[i] + " " + city[i] + " " + states[i] + " " + zipcode[i]
-					+ " id" + i + "<br>");
-			i++;
-		}
-
-		out.println("userrole :" + userrole);
-
-		int j = 0;
-
-		while (j < technologies.length) {
-			out.println(technologies[j] + " id" + j + "<br>");
-			j++;
-		}
-
-		out.println("password :" + password);
-		out.println("confirmpassword :" + confirmpassword);
-		out.println("securityquestion :" + securityquestion);
-		out.println("securityanswer :" + securityanswer);
 
 		UserDetailsBeanModel user = new UserDetailsBeanModel();
 
@@ -112,7 +75,6 @@ public class RegistrationServlet extends HttpServlet {
 		user.setDob(dob);
 		user.setPhone(phone);
 		user.setPassword(password);
-		user.setUserrole(userrole);
 		user.setSecurityquestion(securityquestion);
 		user.setSecurityanswer(securityanswer);
 
@@ -148,5 +110,6 @@ public class RegistrationServlet extends HttpServlet {
 			technologyloop++;
 		}
 
+		out.println("User Registered Successfully");
 	}
 }

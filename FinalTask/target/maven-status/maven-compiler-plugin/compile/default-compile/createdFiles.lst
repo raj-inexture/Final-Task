@@ -1,0 +1,14 @@
+controller\LoginServlet.class
+model\TechnologiesBeanModel.class
+dao\UserDetailsDAO.class
+service\RegisterUserAddress.class
+model\AddressBeanModel.class
+util\DatabaseConnection.class
+controller\RegistrationServlet.class
+service\RegisterUser.class
+service\LoginUser.class
+dao\UserAddressDAO.class
+dao\UserTechnologiesDAO.class
+service\RegisterUserTechnologies.class
+model\UserDetailsBeanModel.class
+util\Validation.class

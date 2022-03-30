@@ -49,7 +49,7 @@ public class UserDetailsDAO {
 			stmt.setString(6, user.getDob());
 			stmt.setString(7, user.getPhone());
 			stmt.setString(8, user.getPassword());
-			stmt.setString(9, user.getUserrole());
+			stmt.setString(9, "User");
 			stmt.setString(10, user.getSecurityquestion());
 			stmt.setString(11, user.getSecurityanswer());
 
@@ -67,4 +67,37 @@ public class UserDetailsDAO {
 
 		return 0;
 	}
+
+	public static UserDetailsBeanModel authenticateUser(UserDetailsBeanModel user) {
+
+		try {
+			Connection conn = DatabaseConnection.getInstance().getConnection();
+
+			PreparedStatement stmt = conn.prepareStatement(
+					"select userid, firstname, lastname, email, phone, userrole from userdetails where (email = ? or phone = ?) and password = ?");
+
+			stmt.setString(1, user.getEmail());
+			stmt.setString(2, user.getEmail());
+			stmt.setString(3, user.getPassword());
+
+			ResultSet rs = stmt.executeQuery();
+
+			if (rs.next()) {
+				user.setUserid(rs.getInt(1));
+				user.setFirstname(rs.getString(2));
+				user.setLastname(rs.getString(3));
+				user.setEmail(rs.getString(4));
+				user.setPhone(rs.getString(5));
+				user.setUserrole(rs.getString(6));
+
+				return user;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+
 }

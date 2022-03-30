@@ -970,13 +970,18 @@ input {
 
 .forgotpassword {
     margin: 0;
-    margin-right: 0px;
-    margin-left: 30%;
-    color: black;
+    margin-right: 0%;
+    margin-left: auto;
+    color: #ff4b5a;
     text-decoration: none;
+    font-weight: 700;
 }
 
-.error {
-    color: red;
-    font-size: 15px;
+.register {
+    font-weight: 700;
+}
+
+.centeralign {
+    margin-left: auto;
+    margin-right: auto;
 }

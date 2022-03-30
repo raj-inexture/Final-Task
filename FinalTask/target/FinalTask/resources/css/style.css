@@ -108,6 +108,8 @@
 }
 
 .col-3,
+.col-4,
+.col-6,
 .col-9,
 .col-12 {
     padding: 0 15px;
@@ -136,6 +138,46 @@
     }
 }
 
+.col-4 {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 33.33%;
+    -moz-box-flex: 0;
+    -ms-flex: 0 0 33.33%;
+    flex: 0 0 33.33%;
+    max-width: 33.33%;
+}
+
+@media (max-width: 767px) {
+    .col-4 {
+        -webkit-box-flex: 0;
+        -webkit-flex: 0 0 40%;
+        -moz-box-flex: 0;
+        -ms-flex: 0 0 40%;
+        flex: 0 0 40%;
+        max-width: 40%;
+    }
+}
+
+.col-6 {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 50%;
+    -moz-box-flex: 0;
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+
+@media (max-width: 767px) {
+    .col-6 {
+        -webkit-box-flex: 0;
+        -webkit-flex: 0 0 50%;
+        -moz-box-flex: 0;
+        -ms-flex: 0 0 50%;
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
+
 .col-9 {
     -webkit-box-flex: 0;
     -webkit-flex: 0 0 75%;
@@ -154,7 +196,18 @@
         flex: 0 0 65%;
         max-width: 65%;
     }
+}
 
+.col-12 {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 100%;
+    -moz-box-flex: 0;
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+
+@media (max-width: 767px) {
     .col-12 {
         -webkit-box-flex: 0;
         -webkit-flex: 0 0 100%;
@@ -375,6 +428,10 @@ h6 {
     padding-bottom: 50px;
 }
 
+.p-b-20 {
+    padding-bottom: 20px;
+}
+
 .m-r-45 {
     margin-right: 45px;
 }
@@ -385,6 +442,10 @@ h6 {
 
 .m-b-55 {
     margin-bottom: 55px;
+}
+
+.m-r-150 {
+    margin-right: 150px;
 }
 
 /* ==========================================================================
@@ -472,6 +533,10 @@ h6 {
     background: #eb3746;
 }
 
+.toggleButton {
+    display: none;
+}
+
 /* ==========================================================================
      #DATE PICKER
      ========================================================================== */
@@ -480,7 +545,7 @@ td.active {
 }
 
 input[type="date"i] {
-    padding: 14px;
+    padding: 5px;
 }
 
 .table-condensed td,
@@ -539,7 +604,8 @@ input {
     font-family: inherit;
 }
 
-.radio-container, .checkbox-container {
+.radio-container,
+.checkbox-container {
     display: inline-block;
     position: relative;
     padding-left: 30px;
@@ -552,17 +618,20 @@ input {
     user-select: none;
 }
 
-.radio-container input, .checkbox-container input {
+.radio-container input,
+.checkbox-container input {
     position: absolute;
     opacity: 0;
     cursor: pointer;
 }
 
-.radio-container input:checked~.checkmark, .checkbox-container input:checked~.checkspan {
+.radio-container input:checked~.checkmark,
+.checkbox-container input:checked~.checkspan {
     background-color: #e5e5e5;
 }
 
-.radio-container input:checked~.checkmark:after, .checkbox-container input:checked~.checkspan:after {
+.radio-container input:checked~.checkmark:after,
+.checkbox-container input:checked~.checkspan:after {
     display: block;
 }
 
@@ -676,6 +745,13 @@ input {
     margin: 0;
 }
 
+.addremovebtn {
+    position: relative;
+    margin: 0;
+    margin-right: 0%;
+    margin-left: auto;
+}
+
 .label {
     color: #555;
     font-size: 15px;
@@ -696,6 +772,11 @@ input {
     margin-top: 7px;
     left: 0;
 }
+
+.requiredsign:after {
+    content:" *";
+    color: red;
+  }
 
 /* ==========================================================================
      #SELECT2
@@ -790,7 +871,7 @@ input {
     transform: rotate(-180deg);
 }
 
-.stateselect {
+.stateselect, .role {
     background: #e5e5e5;
     height: 50px;
     -webkit-border-radius: 5px;
@@ -845,7 +926,7 @@ input {
 
 .card-5 .card-body {
     padding: 52px 85px;
-    padding-bottom: 73px;
+    padding-bottom: 45px;
 }
 
 @media (max-width: 767px) {
@@ -853,4 +934,54 @@ input {
         padding: 40px 30px;
         padding-bottom: 50px;
     }
+}
+
+/* -------------------------------------------------------------------- */
+
+#show-emails>ul {
+    list-style: none;
+    margin-left: 0;
+    display: inline-block;
+    padding-inline-start: 0;
+    margin-top: 1rem;
+}
+
+#show-emails>ul>li {
+    padding: 5px 10px;
+    margin-bottom: 3px;
+}
+
+.remove {
+    padding: 0 .6rem;
+    cursor: pointer;
+    float: right
+}
+
+.email-error {
+    margin: 0.8rem;
+    border: 1px solid #ff0000;
+    background: rgba(255, 0, 0, .08);
+    padding: .7rem;
+    border-radius: 3px;
+    color: #ff0000;
+}
+
+/* -------------------------------------------- */
+
+.forgotpassword {
+    margin: 0;
+    margin-right: 0%;
+    margin-left: auto;
+    color: #ff4b5a;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.register {
+    font-weight: 700;
+}
+
+.centeralign {
+    margin-left: auto;
+    margin-right: auto;
 }
