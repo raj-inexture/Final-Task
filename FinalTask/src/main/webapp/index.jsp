@@ -28,7 +28,8 @@
 	crossorigin="anonymous">
 
 <!-- Custom Style CSS -->
-<link href="resources/css/daterangepicker.css" rel="stylesheet" media="all">
+<link href="resources/css/daterangepicker.css" rel="stylesheet"
+	media="all">
 <link href="resources/css/style.css" rel="stylesheet">
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -106,8 +107,9 @@
 										<div class="input-group-desc">
 											<!-- <input class="input--style-5" type="date" name="dob" id="dob">
 											<input class="input--style-5 js-select-simple" type="text" name="datepicker"> -->
-											<input class="input--style-5 js-datepicker" type="text" name="dob" id="dob">
-                                        	<i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
+											<input class="input--style-5 js-datepicker js-select-simple"
+												type="text" name="dob" id="dob"> <i
+												class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
 										</div>
 									</div>
 								</div>
@@ -169,7 +171,7 @@
 										<div class="name requiredsign">City</div>
 										<div class="value">
 											<div class="row row-refine">
-												<div class="col-6">
+												<div class="col-9">
 													<div class="input-group-desc">
 														<input class="input--style-5" type="text" name="city">
 													</div>
@@ -206,7 +208,7 @@
 									<div class="input-group addremovebtn">
 										<input type="button"
 											class="btn btn--radius-2 btn--red m-b-55 remove delete"
-											value="Remove Address Block" onclick="location.href='#'">
+											value="Remove Address Block">
 									</div>
 								</fieldset>
 							</div>
@@ -214,7 +216,7 @@
 						<div class="input-group addremovebtn">
 							<input type="button"
 								class="btn btn--radius-2 btn--red m-b-55 addsection clone"
-								value="Add New Address Block" onclick="location.href='#'">
+								value="Add New Address Block">
 						</div>
 						<div class="form-row">
 							<div class="name requiredsign">Technologies</div>
@@ -285,7 +287,7 @@
 							<div class="name requiredsign">Password</div>
 							<div class="value">
 								<div class="row row-refine">
-									<div class="col-6">
+									<div class="col-9">
 										<div class="input-group-desc">
 											<input class="input--style-5" type="password" name="password">
 										</div>
@@ -297,7 +299,7 @@
 							<div class="name requiredsign">Confirm Password</div>
 							<div class="value">
 								<div class="row row-refine">
-									<div class="col-6">
+									<div class="col-9">
 										<div class="input-group-desc">
 											<input class="input--style-5" type="password"
 												name="confirmpassword">
@@ -316,7 +318,7 @@
 											<option disabled="disabled" selected="selected">Choose
 												Security Question</option>
 										</select>
-										<div class="select-dropdown"></div>
+										<!-- <div class="select-dropdown"></div> -->
 									</div>
 								</div>
 							</div>
@@ -327,8 +329,9 @@
 								<div class="row row-refine">
 									<div class="col-12">
 										<div class="input-group-desc">
-											<input class="input--style-5" type="text" name="security">
-											<label class="label--desc">Your Security Answer</label>
+											<input class="input--style-5" type="text"
+												name="securityanswer"> <label class="label--desc">Your
+												Security Answer</label>
 										</div>
 									</div>
 								</div>
@@ -378,10 +381,10 @@
 
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="resources/library/bootstrap/js/bootstrap.min.js"></script>
-	
+
 	<!-- Multiple Address jQuery Plugin -->
 	<script src="resources/js/jquery-cloneya.js"></script>
-	
+
 	<script>
 		$("#addresssection").cloneya();
 	</script>
@@ -389,9 +392,35 @@
 	<!-- DatePicker jQuery -->
 	<script src="resources/js/moment.min.js"></script>
 	<script src="resources/js/daterangepicker.js"></script>
-	
+
+	<!-- Select jQuery
+	<script src="resources/js/select2.min.js"></script> -->
+
 	<!-- Custom Script Validation JavaScript -->
 	<script src="resources/js/validation.js"></script>
+
+	<!-- Custom Date Script JavaScript -->
+	<script src="resources/js/date.js"></script>
+
+	<script>
+		$(document).ready(function() {
+			var currentDate = new Date();
+			$('.js-datepicker').datepicker({
+				endDate : "currentDate",
+				maxDate : currentDate
+			}).on('changeDate', function(ev) {
+				$(this).datepicker('hide');
+			});
+			$('.js-datepicker').keyup(function() {
+				if (this.value.match(/[^0-9]/g)) {
+					this.value = this.value.replace(/[^0-9^-]/g, '');
+				}
+			});
+		});
+	</script>
+
+	<!-- Custom Script JavaScript -->
+	<script src="resources/js/forgotpasswordquestion.js"></script>
 
 	<!-- Custom Script JavaScript -->
 	<script src="resources/js/script.js"></script>

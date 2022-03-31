@@ -2,12 +2,16 @@ controller\LoginServlet.class
 model\TechnologiesBeanModel.class
 dao\UserDetailsDAO.class
 service\RegisterUserAddress.class
+controller\ForgotPasswordQuestionServlet.class
 model\AddressBeanModel.class
 util\DatabaseConnection.class
 controller\RegistrationServlet.class
+controller\ChangePasswordServlet.class
 service\RegisterUser.class
 service\LoginUser.class
+service\ForgotPassword.class
 dao\UserAddressDAO.class
+controller\ForgotPasswordUsernameServlet.class
 dao\UserTechnologiesDAO.class
 service\RegisterUserTechnologies.class
 model\UserDetailsBeanModel.class

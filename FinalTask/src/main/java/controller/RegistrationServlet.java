@@ -2,6 +2,9 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Formatter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -63,8 +66,32 @@ public class RegistrationServlet extends HttpServlet {
 		String[] technologies = request.getParameterValues("exist");
 		String password = request.getParameter("password");
 		String confirmpassword = request.getParameter("confirmpassword");
-		String securityquestion = request.getParameter("subject");
-		String securityanswer = request.getParameter("security");
+		String securityquestion = request.getParameter("securityquestion");
+		String securityanswer = request.getParameter("securityanswer");
+
+		String hashedPassword = "";
+		MessageDigest crypt = null;
+
+		try {
+
+			crypt = MessageDigest.getInstance("SHA-1");
+			crypt.reset();
+			crypt.update(password.getBytes("UTF-8"));
+
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		Formatter formatter = new Formatter();
+
+		for (byte b : crypt.digest()) {
+
+			formatter.format("%2x", b);
+
+		}
+
+		hashedPassword = formatter.toString();
 
 		UserDetailsBeanModel user = new UserDetailsBeanModel();
 
@@ -74,7 +101,7 @@ public class RegistrationServlet extends HttpServlet {
 		user.setGender(gender);
 		user.setDob(dob);
 		user.setPhone(phone);
-		user.setPassword(password);
+		user.setPassword(hashedPassword);
 		user.setSecurityquestion(securityquestion);
 		user.setSecurityanswer(securityanswer);
 
@@ -110,6 +137,6 @@ public class RegistrationServlet extends HttpServlet {
 			technologyloop++;
 		}
 
-		out.println("User Registered Successfully");
+		response.sendRedirect("login.jsp");
 	}
 }
