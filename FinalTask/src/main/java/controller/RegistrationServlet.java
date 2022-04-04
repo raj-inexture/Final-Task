@@ -1,22 +1,21 @@
 package controller;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.Formatter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import model.AddressBeanModel;
 import model.TechnologiesBeanModel;
 import model.UserDetailsBeanModel;
-import service.RegisterUser;
-import service.RegisterUserAddress;
-import service.RegisterUserTechnologies;
+import service.UserRegistrationImpl;
+import service.UserRegistrationInterface;
+import util.PasswordMethods;
 
 /**
  * Servlet implementation class RegistrationServlet
@@ -69,29 +68,17 @@ public class RegistrationServlet extends HttpServlet {
 		String securityquestion = request.getParameter("securityquestion");
 		String securityanswer = request.getParameter("securityanswer");
 
-		String hashedPassword = "";
-		MessageDigest crypt = null;
+		Part filePart = request.getPart("profilephoto");
 
-		try {
+		InputStream inputStream = null;
 
-			crypt = MessageDigest.getInstance("SHA-1");
-			crypt.reset();
-			crypt.update(password.getBytes("UTF-8"));
-
-		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if (filePart != null) {
+			inputStream = filePart.getInputStream();
 		}
 
-		Formatter formatter = new Formatter();
+		PasswordMethods hash = new PasswordMethods();
 
-		for (byte b : crypt.digest()) {
-
-			formatter.format("%2x", b);
-
-		}
-
-		hashedPassword = formatter.toString();
+		String hashedPassword = hash.hashPassword(password);
 
 		UserDetailsBeanModel user = new UserDetailsBeanModel();
 
@@ -104,39 +91,45 @@ public class RegistrationServlet extends HttpServlet {
 		user.setPassword(hashedPassword);
 		user.setSecurityquestion(securityquestion);
 		user.setSecurityanswer(securityanswer);
+		user.setProfilephoto(inputStream);
 
-		int result = RegisterUser.registerUser(user);
+		UserRegistrationInterface userRegistration = new UserRegistrationImpl();
 
-		int addressloop = 0;
+		int result = userRegistration.registerUser(user);
 
-		while (addressloop < city.length) {
-			AddressBeanModel address = new AddressBeanModel();
+		if (result != 0) {
 
-			address.setUserid(user.getUserid());
-			address.setAddressline1(addressline1[addressloop]);
-			address.setAddressline2(addressline2[addressloop]);
-			address.setCity(city[addressloop]);
-			address.setState(states[addressloop]);
-			address.setZipcode(zipcode[addressloop]);
+			int addressloop = 0;
 
-			int addressesresult = RegisterUserAddress.registerUserAddress(address);
+			while (addressloop < city.length) {
+				AddressBeanModel address = new AddressBeanModel();
 
-			addressloop++;
+				address.setUserid(user.getUserid());
+				address.setAddressline1(addressline1[addressloop]);
+				address.setAddressline2(addressline2[addressloop]);
+				address.setCity(city[addressloop]);
+				address.setState(states[addressloop]);
+				address.setZipcode(zipcode[addressloop]);
+
+				int addressResult = userRegistration.registerUserAddress(address);
+
+				addressloop++;
+			}
+
+			int technologyloop = 0;
+
+			while (technologyloop < technologies.length) {
+				TechnologiesBeanModel technology = new TechnologiesBeanModel();
+
+				technology.setUserid(user.getUserid());
+				technology.setTechnology(technologies[technologyloop]);
+
+				int technologiesresult = userRegistration.registerUserTechnologies(technology);
+
+				technologyloop++;
+			}
+
+			response.sendRedirect("login.jsp");
 		}
-
-		int technologyloop = 0;
-
-		while (technologyloop < technologies.length) {
-			TechnologiesBeanModel technology = new TechnologiesBeanModel();
-
-			technology.setUserid(user.getUserid());
-			technology.setTechnology(technologies[technologyloop]);
-
-			int technologiesresult = RegisterUserTechnologies.registerUserTechnology(technology);
-
-			technologyloop++;
-		}
-
-		response.sendRedirect("login.jsp");
 	}
 }

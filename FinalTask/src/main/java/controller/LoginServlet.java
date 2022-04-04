@@ -2,17 +2,21 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.Formatter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.UserDetailsBeanModel;
-import service.LoginUser;
+import model.UserLogsBeanModel;
+import service.AdminUserLoginImpl;
+import service.AdminUserLoginInterface;
+import service.UserLogsImpl;
+import service.UserLogsInterface;
+import util.PasswordMethods;
 
 /**
  * Servlet implementation class LoginServlet
@@ -51,39 +55,67 @@ public class LoginServlet extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 
-		String hashedPassword = "";
-		MessageDigest crypt = null;
+		PasswordMethods hash = new PasswordMethods();
 
-		try {
-
-			crypt = MessageDigest.getInstance("SHA-1");
-			crypt.reset();
-			crypt.update(password.getBytes("UTF-8"));
-
-		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		Formatter formatter = new Formatter();
-
-		for (byte b : crypt.digest()) {
-
-			formatter.format("%2x", b);
-
-		}
-
-		hashedPassword = formatter.toString();
+		String hashedPassword = hash.hashPassword(password);
 
 		UserDetailsBeanModel user = new UserDetailsBeanModel();
 
 		user.setEmail(username);
 		user.setPassword(hashedPassword);
 
-		user = LoginUser.authenticateUser(user);
+		AdminUserLoginInterface login = new AdminUserLoginImpl();
 
-		if (user != null) {
-			out.println("Welcome " + user.getFirstname() + " " + user.getLastname() + " " + user.getUserrole());
+		user = login.authenticateUser(user);
+
+		if (user != null && user.getUserrole().equals("Admin")) {
+
+			HttpSession session = request.getSession();
+
+			UserLogsBeanModel userlogs = new UserLogsBeanModel();
+
+			userlogs.setUserid(user.getUserid());
+
+			UserLogsInterface logs = new UserLogsImpl();
+
+			int result = logs.addStartStamp(userlogs);
+
+			logs.setID(userlogs);
+
+			request.setAttribute("email", user.getEmail());
+			request.setAttribute("logid", userlogs.getId());
+
+			session.setAttribute("email", user.getEmail());
+			session.setAttribute("logid", userlogs.getId());
+
+			RequestDispatcher rd = request.getRequestDispatcher("admin.jsp");
+			rd.forward(request, response);
+
+//			RequestDispatcher rd = request.getRequestDispatcher("UserLogsServlet");
+//			rd.forward(request, response);
+
+		} else if (user != null && user.getUserrole().equals("User")) {
+
+			HttpSession session = request.getSession();
+
+			UserLogsBeanModel userlogs = new UserLogsBeanModel();
+
+			userlogs.setUserid(user.getUserid());
+
+			UserLogsInterface logs = new UserLogsImpl();
+
+			int result = logs.addStartStamp(userlogs);
+
+			logs.setID(userlogs);
+
+			request.setAttribute("email", user.getEmail());
+			request.setAttribute("logid", userlogs.getId());
+
+			session.setAttribute("email", user.getEmail());
+			session.setAttribute("logid", userlogs.getId());
+
+			RequestDispatcher rd = request.getRequestDispatcher("ViewUsersServlet");
+			rd.forward(request, response);
 		} else {
 			response.sendRedirect("login.jsp");
 		}

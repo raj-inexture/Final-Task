@@ -10,7 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.UserDetailsBeanModel;
-import service.ForgotPassword;
+import service.ForgotPasswordImpl;
+import service.ForgotPasswordInterface;
 
 /**
  * Servlet implementation class ForgotPasswordUsernameServlet
@@ -52,7 +53,9 @@ public class ForgotPasswordUsernameServlet extends HttpServlet {
 
 		user.setEmail(username);
 
-		user = ForgotPassword.authenticateUsername(user);
+		ForgotPasswordInterface forgotPassword = new ForgotPasswordImpl();
+
+		user = forgotPassword.authenticateUsername(user);
 
 		if (user != null) {
 

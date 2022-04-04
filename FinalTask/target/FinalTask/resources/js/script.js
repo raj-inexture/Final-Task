@@ -162,11 +162,16 @@ for (var i = 0, l = options.length; i < l; i++) {
 var template = $('#addresssection .addressclass:first').clone();
 
 // Counter
-var sectionsCount = 1;
+var sectionsCount = $('.addressclass').length;
 
 var addressline1 = $("input[name='addressline1']");
 
-$('.remove').parent().addClass('toggleButton');
+if (sectionsCount == 1) {
+	//remove section
+	$('.remove').parent().addClass('toggleButton');
+} else {
+	$('.remove').parent().removeClass('toggleButton');
+}
 
 // Add Address
 $('body').on('click', '.addsection', function() {
@@ -175,7 +180,7 @@ $('body').on('click', '.addsection', function() {
 
 	$('.remove').parent().removeClass('toggleButton');
 
-	var section = template.clone().find(':input').each(function() {
+	var section = template.clone().find(':input[type="text"]').val("").each(function() {
 
 		//set id to store the updated section number
 		var newId = this.id + sectionsCount;

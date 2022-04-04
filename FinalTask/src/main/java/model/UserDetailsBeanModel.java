@@ -1,5 +1,7 @@
 package model;
 
+import java.io.InputStream;
+
 public class UserDetailsBeanModel {
 
 	private int userid;
@@ -13,6 +15,7 @@ public class UserDetailsBeanModel {
 	private String userrole;
 	private String securityquestion;
 	private String securityanswer;
+	private InputStream profilephoto;
 
 	public int getUserid() {
 		return userid;
@@ -100,6 +103,14 @@ public class UserDetailsBeanModel {
 
 	public void setSecurityanswer(String securityanswer) {
 		this.securityanswer = securityanswer;
+	}
+
+	public InputStream getProfilephoto() {
+		return profilephoto;
+	}
+
+	public void setProfilephoto(InputStream profilephoto) {
+		this.profilephoto = profilephoto;
 	}
 
 }

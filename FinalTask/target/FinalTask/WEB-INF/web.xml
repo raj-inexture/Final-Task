@@ -5,10 +5,6 @@
 <web-app>
 	<display-name>Archetype Created Web Application</display-name>
 
-	<welcome-file-list>
-		<welcome-file>login.jsp</welcome-file>
-	</welcome-file-list>
-
 	<servlet>
 		<servlet-name>LoginServlet</servlet-name>
 		<display-name>LoginServlet</display-name>
@@ -20,6 +16,11 @@
 		<display-name>RegistrationServlet</display-name>
 		<description></description>
 		<servlet-class>controller.RegistrationServlet</servlet-class>
+		<multipart-config>
+			<max-file-size>20848820</max-file-size>
+			<max-request-size>418018841</max-request-size>
+			<file-size-threshold>1048576</file-size-threshold>
+		</multipart-config>
 	</servlet>
 	<servlet>
 		<servlet-name>ForgotPasswordUsernameServlet</servlet-name>
@@ -38,6 +39,30 @@
 		<display-name>ChangePasswordServlet</display-name>
 		<description></description>
 		<servlet-class>controller.ChangePasswordServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>ViewUsersServlet</servlet-name>
+		<display-name>ViewUsersServlet</display-name>
+		<description></description>
+		<servlet-class>controller.ViewUsersServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>LogoutServlet</servlet-name>
+		<display-name>LogoutServlet</display-name>
+		<description></description>
+		<servlet-class>controller.LogoutServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>UserLogsServlet</servlet-name>
+		<display-name>UserLogsServlet</display-name>
+		<description></description>
+		<servlet-class>controller.UserLogsServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>ViewAllUsersServlet</servlet-name>
+		<display-name>ViewAllUsersServlet</display-name>
+		<description></description>
+		<servlet-class>controller.ViewAllUsersServlet</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
@@ -60,4 +85,24 @@
 		<servlet-name>ChangePasswordServlet</servlet-name>
 		<url-pattern>/ChangePasswordServlet</url-pattern>
 	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ViewUsersServlet</servlet-name>
+		<url-pattern>/ViewUsersServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>LogoutServlet</servlet-name>
+		<url-pattern>/LogoutServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UserLogsServlet</servlet-name>
+		<url-pattern>/UserLogsServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ViewAllUsersServlet</servlet-name>
+		<url-pattern>/ViewAllUsersServlet</url-pattern>
+	</servlet-mapping>
+
+	<welcome-file-list>
+		<welcome-file>login.jsp</welcome-file>
+	</welcome-file-list>
 </web-app>

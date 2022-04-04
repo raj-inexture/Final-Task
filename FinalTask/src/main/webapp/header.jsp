@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link
-	href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&display=swap"
+	href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&amp;display=swap"
 	rel="stylesheet">
 
 <!-- Font Awesome -->
@@ -42,7 +42,7 @@
 
 <body>
 
-<!-- 	<div class="site-mobile-menu">
+	<div class="site-mobile-menu">
 		<div class="site-mobile-menu-header">
 			<div class="site-mobile-menu-close mt-3">
 				<span class="icon-close2 js-menu-toggle"></span>
@@ -58,123 +58,62 @@
 
 				<div class="col-11 col-xl-2">
 					<h1 class="mb-0 site-logo">
-						<a href="index.html" class="text-white mb-0">Brand</a>
+						<a href="index.html" class="text-white mb-0"><img
+							src="resources/images/download.png"
+							style="border-radius: 50%; width: 125px;" alt=""><!-- <p style="margin-top: 50px; color: black; text-decoration: none">INEXTURE SOLUTIONS LLP</p> --></a>
 					</h1>
 				</div>
 				<div class="col-12 col-md-10 d-none d-xl-block">
 					<nav class="site-navigation position-relative text-right"
 						role="navigation">
-
 						<ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
 							<li class="active"><a href="index.html"><span>Home</span></a></li>
-							<li class="has-children"><a href="about.html"><span>Dropdown</span></a>
+							<li class="has-children"><a href="profile.html"><span>Profile</span></a>
 								<ul class="dropdown arrow-top">
-									<li><a href="#">Menu One</a></li>
-									<li><a href="#">Menu Two</a></li>
-									<li><a href="#">Menu Three</a></li>
-									<li class="has-children"><a href="#">Dropdown</a>
+									<!-- <li><a href="#">Edit / View Profile</a></li>
+									<li><a href="#">Change Password</a></li> -->
+									<li class="has-children"><a href="#">Edit / View
+											Profile</a>
 										<ul class="dropdown">
-											<li><a href="#">Menu One</a></li>
-											<li><a href="#">Menu Two</a></li>
-											<li><a href="#">Menu Three</a></li>
-											<li><a href="#">Menu Four</a></li>
+											<li><a href="#">Profile</a></li>
+											<li><a href="ChangePassword.jsp">Change Password</a></li>
 										</ul></li>
 								</ul></li>
-							<li><a href="listings.html"><span>Listings</span></a></li>
-							<li><a href="about.html"><span>About</span></a></li>
-							<li><a href="blog.html"><span>Blog</span></a></li>
-							<li><a href="contact.html"><span>Contact</span></a></li>
+							<li><a href="LogoutServlet"><span>Logout</span></a></li>
 						</ul>
 					</nav>
 				</div>
-
-
 				<div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3"
 					style="position: relative; top: 3px;">
 					<a href="#" class="site-menu-toggle js-menu-toggle text-white"><span
 						class="icon-menu h3"></span></a>
 				</div>
-
 			</div>
-
 		</div>
-		</div>
-
 	</header>
-
-	<div class="hero" style="background-image: url('images/hero_1.jpg');"></div> -->
-	
-	<!-- ------------------------------SECTION ONE START------------------------------ -->
-    <section class="first-page">
-        <!-- ------------------------------HEADER START------------------------------ -->
-        <header>
-            <!-- ------------------------------NAVBAR START------------------------------ -->
-            <nav class="navbar navbar-default">
-                <div class="nav-menu">
-                    <div class="container-fluid">
-                        <div class="navigate">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-md-4 col-sm-3">
-                                        <!-- Brand and toggle get grouped for better mobile display -->
-                                        <div class="navbar-header">
-                                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                                                data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                                                <span class="sr-only">Toggle navigation</span>
-                                                <span class="icon-bar"></span>
-                                                <span class="icon-bar"></span>
-                                                <span class="icon-bar"></span>
-                                            </button>
-                                            <a class="navbar-brand" href="#"><img src="resources/images/logo.jpg"></a>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-8 col-sm-9">
-                                        <!-- Collect the nav links, forms, and other content for toggling -->
-                                        <div class="collapse navbar-collapse navbar-right"
-                                            id="bs-example-navbar-collapse-1">
-                                            <div class="nav-link">
-                                                <ul class="nav navbar-nav">
-                                                    <li class="active"><a href="#">About Me<span
-                                                                class="sr-only">(current)</span></a></li>
-                                                    <li><a href="#">Portfolio</a></li>
-                                                    <li><a href="#">Testimonials</a></li>
-                                                    <li><a href="#">Blog</a></li>
-                                                    <li><a href="#">Contact Us</a></li>
-                                                    <li class="active-block"><a href="#">Hire Me</a></li>
-                                                </ul>
-                                            </div>
-                                        </div><!-- /.navbar-collapse -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- /.container-fluid -->
-                </div>
-            </nav>
-            <!-- ------------------------------NAVBAR END------------------------------ -->
-        </header>
-        <!-- ------------------------------HEADER END------------------------------ -->
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"
+		type="text/javascript"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
-	<script src="resources/library/bootstrap/js/bootstrap.min.js"></script>
+	<script src="resources/library/bootstrap/js/bootstrap.min.js"
+		type="text/javascript"></script>
 
 	<!-- Custom Script Validation JavaScript -->
-	<script src="resources/js/validation.js"></script>
+	<script src="resources/js/validation.js" type="text/javascript"></script>
 
 	<!-- Header Popper JavaScript -->
-	<script src="resources/js/popper.min.js"></script>
+	<script src="resources/js/popper.min.js" type="text/javascript"></script>
 
 	<!-- Header jQuery Sticky JavaScript -->
-	<script src="resources/js/jquery.sticky.js"></script>
+	<script src="resources/js/jquery.sticky.js" type="text/javascript"></script>
 
 	<!-- Custom Main Script JavaScript -->
-	<script src="resources/js/main.js"></script>
+	<script src="resources/js/main.js" type="text/javascript"></script>
 
 	<!-- Custom Script JavaScript -->
-	<script src="resources/js/script.js"></script>
+	<script src="resources/js/script.js" type="text/javascript"></script>
 
 </body>
 

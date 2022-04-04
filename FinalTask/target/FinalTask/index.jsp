@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ page isELIgnored="false"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,21 +52,24 @@
 					<h2 class="title">User Registration Form</h2>
 				</div>
 				<div class="card-body">
-					<form method="POST" action="RegistrationServlet">
+					<form method="POST" action="RegistrationServlet"
+						enctype="multipart/form-data">
 						<div class="form-row m-b-55">
 							<div class="name requiredsign">Name</div>
 							<div class="value">
 								<div class="row row-space">
 									<div class="col-2">
 										<div class="input-group-desc">
-											<input class="input--style-5" type="text" name="firstname">
-											<label class="label--desc">First Name</label>
+											<input class="input--style-5" type="text" name="firstname"
+												value="${user.firstname}"> <label
+												class="label--desc">First Name</label>
 										</div>
 									</div>
 									<div class="col-2">
 										<div class="input-group-desc">
-											<input class="input--style-5" type="text" name="lastname">
-											<label class="label--desc">Last Name</label>
+											<input class="input--style-5" type="text" name="lastname"
+												value="${user.lastname}"> <label class="label--desc">Last
+												Name</label>
 										</div>
 									</div>
 								</div>
@@ -76,7 +81,8 @@
 								<div class="row row-refine">
 									<div class="col-9">
 										<div class="input-group-desc">
-											<input class="input--style-5" type="email" name="email">
+											<input class="input--style-5" type="email" name="email"
+												value="${user.email}">
 										</div>
 									</div>
 								</div>
@@ -87,13 +93,14 @@
 							<div class="value">
 								<div class="input-group">
 									<label class="radio-container m-r-55">Male <input
-										type="radio" name="genderradio" value="Male"> <span
+										type="radio" name="genderradio" value="Male"
+										${user.gender == 'Male'?'checked':''}> <span
 										class="checkmark"></span>
 									</label> <label class="radio-container m-r-55">Female <input
-										type="radio" name="genderradio" value="Female"> <span
+										type="radio" name="genderradio" value="Female" ${user.gender == 'Female'?'checked':''}> <span
 										class="checkmark"></span>
 									</label> <label class="radio-container">Other <input
-										type="radio" name="genderradio" value="Other"> <span
+										type="radio" name="genderradio" value="Other" ${user.gender == 'Other'?'checked':''}> <span
 										class="checkmark"></span>
 									</label>
 								</div>
@@ -107,8 +114,8 @@
 										<div class="input-group-desc">
 											<!-- <input class="input--style-5" type="date" name="dob" id="dob">
 											<input class="input--style-5 js-select-simple" type="text" name="datepicker"> -->
-											<input class="input--style-5 js-datepicker" type="text"
-												name="dob" id="dob"> <i
+											<input class="input--style-5 js-datepicker js-select-simple"
+												type="text" name="dob" id="dob" value="${user.dob}"> <i
 												class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
 										</div>
 									</div>
@@ -355,8 +362,8 @@
 							<div class="value">
 								<div class="input-group">
 									<label class="checkbox-container m-r-55">I agree to the
-										Terms of Services above. <input type="checkbox" name="exist">
-										<span class="checkspan"></span>
+										Terms of Services above. <input type="checkbox" name="exist"
+										required="required"> <span class="checkspan"></span>
 									</label>
 								</div>
 							</div>
@@ -401,6 +408,23 @@
 
 	<!-- Custom Date Script JavaScript -->
 	<script src="resources/js/date.js"></script>
+
+	<script>
+		$(document).ready(function() {
+			var currentDate = new Date();
+			$('.js-datepicker').datepicker({
+				endDate : "currentDate",
+				maxDate : currentDate
+			}).on('changeDate', function(ev) {
+				$(this).datepicker('hide');
+			});
+			$('.js-datepicker').keyup(function() {
+				if (this.value.match(/[^0-9]/g)) {
+					this.value = this.value.replace(/[^0-9^-]/g, '');
+				}
+			});
+		});
+	</script>
 
 	<!-- Custom Script JavaScript -->
 	<script src="resources/js/forgotpasswordquestion.js"></script>

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ page isELIgnored="false"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -55,7 +57,7 @@
 									<div class="col-9">
 										<div class="input-group-desc">
 											<input class="input--style-5" type="email" name="email"
-												value="<%=request.getAttribute("email")%>" readonly>
+												value="${email}" readonly>
 										</div>
 									</div>
 								</div>

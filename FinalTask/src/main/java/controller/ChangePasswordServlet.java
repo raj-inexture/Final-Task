@@ -2,9 +2,6 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.Formatter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -12,7 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.UserDetailsBeanModel;
-import service.ForgotPassword;
+import service.ForgotPasswordImpl;
+import service.ForgotPasswordInterface;
+import util.PasswordMethods;
 
 /**
  * Servlet implementation class ChangePassword
@@ -48,40 +47,31 @@ public class ChangePasswordServlet extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 
-		String email = request.getParameter("email");
+		String email;
+
+		email = request.getParameter("email");
+
+		if (email == null) {
+			email = (String) request.getAttribute("email");
+		}
+
+		out.println("here" + email + "end");
+
 		String password = request.getParameter("password");
 		String confirmpassword = request.getParameter("confirmpassword");
 
-		String hashedPassword = "";
-		MessageDigest crypt = null;
+		PasswordMethods hash = new PasswordMethods();
 
-		try {
-
-			crypt = MessageDigest.getInstance("SHA-1");
-			crypt.reset();
-			crypt.update(password.getBytes("UTF-8"));
-
-		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		Formatter formatter = new Formatter();
-
-		for (byte b : crypt.digest()) {
-
-			formatter.format("%2x", b);
-
-		}
-
-		hashedPassword = formatter.toString();
+		String hashedPassword = hash.hashPassword(password);
 
 		UserDetailsBeanModel user = new UserDetailsBeanModel();
 
 		user.setEmail(email);
 		user.setPassword(hashedPassword);
 
-		int result = ForgotPassword.changePassword(user);
+		ForgotPasswordInterface forgotPassword = new ForgotPasswordImpl();
+
+		int result = forgotPassword.changePassword(user);
 
 		if (result != 0) {
 
