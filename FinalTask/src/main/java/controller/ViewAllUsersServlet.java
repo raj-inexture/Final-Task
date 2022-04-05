@@ -64,8 +64,6 @@ public class ViewAllUsersServlet extends HttpServlet {
 			row.add(new JsonPrimitive(users.getFirstname()));
 			row.add(new JsonPrimitive(users.getLastname()));
 			row.add(new JsonPrimitive(users.getEmail()));
-			row.add(new JsonPrimitive(users.getGender()));
-			row.add(new JsonPrimitive(users.getDob()));
 			row.add(new JsonPrimitive(users.getPhone()));
 
 			data.add(row);

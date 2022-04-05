@@ -13,7 +13,7 @@
 <title>User Registration</title>
 
 <!-- Bootstrap -->
-<link href="assets/library/bootstrap/css/bootstrap.min.css"
+<link href="resources/library/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 
 <!-- Fonts -->

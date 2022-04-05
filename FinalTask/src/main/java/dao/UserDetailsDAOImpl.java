@@ -235,7 +235,8 @@ public class UserDetailsDAOImpl implements UserDetailsDAOInterface {
 
 			List<UserDetailsBeanModel> userList = new LinkedList<UserDetailsBeanModel>();
 
-			PreparedStatement stmt = conn.prepareStatement("select * from userdetails where userrole = 'User'");
+			PreparedStatement stmt = conn.prepareStatement(
+					"select userid, firstname, lastname, email, phone from userdetails where userrole = 'User'");
 
 			ResultSet rs = stmt.executeQuery();
 
@@ -246,14 +247,7 @@ public class UserDetailsDAOImpl implements UserDetailsDAOInterface {
 				user.setFirstname(rs.getString(2));
 				user.setLastname(rs.getString(3));
 				user.setEmail(rs.getString(4));
-				user.setGender(rs.getString(5));
-				user.setDob(rs.getString(6));
-				user.setPhone(rs.getString(7));
-				user.setPassword(rs.getString(8));
-				user.setProfilephoto(rs.getBinaryStream(9));
-				user.setUserrole(rs.getString(10));
-				user.setSecurityquestion(rs.getString(11));
-				user.setSecurityanswer(rs.getString(12));
+				user.setPhone(rs.getString(5));
 
 				userList.add(user);
 			}
@@ -265,6 +259,30 @@ public class UserDetailsDAOImpl implements UserDetailsDAOInterface {
 		}
 
 		return null;
+	}
+
+	public int deleteUser(UserDetailsBeanModel user) {
+
+		int i = 0;
+
+		try {
+			conn = DatabaseConnection.getInstance().getConnection();
+
+			PreparedStatement stmt = conn.prepareStatement("delete from userdetails where userid = ?");
+
+			stmt.setInt(1, user.getUserid());
+
+			i = stmt.executeUpdate();
+
+			if (i != 0) {
+				return i;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return 0;
 	}
 
 }

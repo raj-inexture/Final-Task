@@ -16,4 +16,6 @@ public interface ViewUsersInterface {
 
 	public List<UserDetailsBeanModel> viewAllUserDetails(UserDetailsBeanModel user);
 
+	public int deleteUser(UserDetailsBeanModel user);
+
 }

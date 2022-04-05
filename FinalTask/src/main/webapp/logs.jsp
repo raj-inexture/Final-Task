@@ -8,8 +8,8 @@
 <title>User Logs</title>
 </head>
 <body>
-<table>
-	<%
+	<table>
+		<%
 	String filename = "D:\\Java Training\\FinalTask\\userlogs.csv";
 	Connection conn = null;
 	String url = "jdbc:mysql://localhost:3333/";

@@ -1,4 +1,7 @@
 $(document).ready(function() {
+	
+	debugger
+	
 	var table = $('#table_id').DataTable({
 		"processing": true,
 		"ajax": {
@@ -6,32 +9,22 @@ $(document).ready(function() {
 			"dataSrc": "usersData",
 			"type": "GET"
 		},
-		"columns": [{
-			"usersData": "userid"
-		},
-		{
-			"usersData": "firstname"
-		},
-		{
-			"usersData": "lastname"
-		},
-		{
-			"usersData": "email"
-		},
-		{
-			"usersData": "gender"
-		},
-		{
-			"usersData": "dob"
-		},
-		{
-			"usersData": "phone"
-		}
-		]
+		"columnDefs": [{
+			"targets": -1,
+			"data": null,
+			"defaultContent": "<input type='button' id='editUser' value='Edit User' style='width: auto; padding: 2.5px; /*background-color: white; color: #ff4b5a; border: #ff4b5a 0.5px solid;*/ border-radius: 10px; margin-right: 20px'> <input type='button' id='deleteUser' value='Delete User' style='width: auto; padding: 2.5px; /*background-color: white; color: #ff4b5a; border: #ff4b5a 0.5px solid;*/ border-radius: 10px'>"
+		}]
 	});
 
-	$('#table_id tbody').on('click', 'tr', function() {
+	$('#table_id tbody').on('click', '[id*=editUser]', function() {
 		var usersData = table.row($(this).parents('tr')).data();
-		alert(table.row(this).data()[0]);
+		window.location = "ViewUsersServlet?email="+usersData[3];
+		/*alert(usersData[3]);*/
+	});
+
+	$('#table_id tbody').on('click', '[id*=deleteUser]', function() {
+		var usersData = table.row($(this).parents('tr')).data();
+		/*window.location = "DeleteUserServlet?userid="+usersData[0];*/
+		console.log(usersData[0]);
 	});
 });

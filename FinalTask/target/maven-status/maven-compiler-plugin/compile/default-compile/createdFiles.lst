@@ -12,6 +12,7 @@ controller\ChangePasswordServlet.class
 dao\UserTechnologiesDAOInterface.class
 dao\UserDetailsDAOInterface.class
 controller\ForgotPasswordUsernameServlet.class
+controller\UpdateUserServlet.class
 dao\UserLogsDAOImpl.class
 service\UserLogsInterface.class
 service\UserRegistrationInterface.class
@@ -21,11 +22,17 @@ service\ForgotPasswordImpl.class
 controller\ViewUsersServlet.class
 dao\UserAddressDAOImpl.class
 service\ViewUsersImpl.class
+model\DummyAddressBeanModel.class
 dao\UserDetailsDAOImpl.class
 controller\LoginServlet.class
+dao\DummyUserAddressDAOImpl.class
+dao\DummyUserAddressDAOInterface.class
+service\UpdateAddressInterface.class
 util\DatabaseConnection.class
 service\UserRegistrationImpl.class
+service\UpdateAddressImpl.class
 dao\UserTechnologiesDAOImpl.class
+controller\DeleteUserServlet.class
 dao\UserLogsDAOInterface.class
 controller\LogoutServlet.class
 model\UserLogsBeanModel.class

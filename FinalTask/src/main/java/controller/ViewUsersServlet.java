@@ -21,6 +21,8 @@ import service.ViewUsersInterface;
  * Servlet implementation class ViewUsersServlet
  */
 public class ViewUsersServlet extends HttpServlet {
+
+	static String email;
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -38,20 +40,11 @@ public class ViewUsersServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 
-		String email = (String) request.getAttribute("email");
+		email = request.getParameter("email");
 
 		UserDetailsBeanModel user = new UserDetailsBeanModel();
 
@@ -76,11 +69,56 @@ public class ViewUsersServlet extends HttpServlet {
 
 			request.setAttribute("technologylist", listTechnology);
 
-			RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("profileview.jsp");
 			rd.forward(request, response);
 		} else {
 			out.println("No Such User Found");
 		}
+
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+
+		email = (String) request.getAttribute("email");
+
+		UserDetailsBeanModel user = new UserDetailsBeanModel();
+
+		user.setEmail(email);
+
+		ViewUsersInterface viewUsers = new ViewUsersImpl();
+
+		user = viewUsers.viewUserDetails(user);
+
+		if (user != null) {
+			request.setAttribute("user", user);
+
+			List<AddressBeanModel> listAddress = new LinkedList<AddressBeanModel>();
+
+			listAddress = viewUsers.viewUserAddress(user.getUserid());
+
+			request.setAttribute("addresslist", listAddress);
+
+			List<TechnologiesBeanModel> listTechnology = new LinkedList<TechnologiesBeanModel>();
+
+			listTechnology = viewUsers.viewUserTechnology(user.getUserid());
+
+			request.setAttribute("technologylist", listTechnology);
+
+			RequestDispatcher rd = request.getRequestDispatcher("profileview.jsp");
+			rd.forward(request, response);
+		} else {
+			out.println("No Such User Found");
+		}
+
 	}
 
 }

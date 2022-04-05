@@ -193,7 +193,7 @@ table {
 td, th {
 	padding: 0
 }
-	/*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */
+/*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */
 @media print {
 	*, :after, :before {
 		color: #000 !important;
@@ -3920,6 +3920,7 @@ tbody.collapse.in {
 	border-top: 0;
 	border-bottom: 4px dashed;
 	border-bottom: 4px solid\9
+
 }
 
 .dropup .dropdown-menu, .navbar-fixed-bottom .dropdown .dropdown-menu {

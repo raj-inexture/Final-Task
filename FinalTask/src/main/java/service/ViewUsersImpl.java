@@ -60,4 +60,14 @@ public class ViewUsersImpl implements ViewUsersInterface {
 		return listUsers;
 
 	}
+
+	public int deleteUser(UserDetailsBeanModel user) {
+
+		UserDetailsDAOInterface userDetails = new UserDetailsDAOImpl();
+
+		int result = userDetails.deleteUser(user);
+
+		return result;
+
+	}
 }

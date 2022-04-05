@@ -20,4 +20,6 @@ public interface UserDetailsDAOInterface {
 
 	public List<UserDetailsBeanModel> viewAllUserDetails(UserDetailsBeanModel users);
 
+	public int deleteUser(UserDetailsBeanModel user);
+
 }

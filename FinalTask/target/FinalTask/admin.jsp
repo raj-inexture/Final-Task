@@ -13,7 +13,7 @@
 <title>User Registration</title>
 
 <!-- Bootstrap -->
-<link href="assets/library/bootstrap/css/bootstrap.min.css"
+<link href="resources/library/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 
 <!-- Fonts -->
@@ -46,6 +46,8 @@
 
 <body>
 
+	<jsp:include page="header.jsp" />
+
 	<table id="table_id" class="display" style="width: 100%;">
 		<thead>
 			<tr>
@@ -53,25 +55,11 @@
 				<th>First Name</th>
 				<th>Last Name</th>
 				<th>Email ID</th>
-				<th>Gender</th>
-				<th>DOB</th>
 				<th>Phone</th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody></tbody>
-		<tfoot>
-			<tr>
-				<th>User ID</th>
-				<th>First Name</th>
-				<th>Last Name</th>
-				<th>Email ID</th>
-				<th>Gender</th>
-				<th>DOB</th>
-				<th>Phone</th>
-			</tr>
-		</tfoot>
-		<tbody>
-		</tbody>
 	</table>
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

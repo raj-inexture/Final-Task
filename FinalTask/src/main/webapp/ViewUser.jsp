@@ -13,7 +13,7 @@
 <title>User Profile</title>
 
 <!-- Bootstrap -->
-<link href="assets/library/bootstrap/css/bootstrap.min.css"
+<link href="resources/library/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 
 <!-- Fonts -->
@@ -198,44 +198,91 @@
 												<div class="input-group">
 													<div class="rs-select2 js-select-simple select--no-search">
 														<select class="stateselect" name="states" id="states">
-															<option disabled="disabled" selected="selected" value="Choose Select">Choose
-																option</option>
-																<option value="Andaman and Nicobar Islands" ${address.state == 'Andaman and Nicobar Islands'?'selected="selected"':''}>Andaman and Nicobar Islands</option>
-																<option value="Andhra Pradesh" ${address.state == 'Andhra Pradesh'?'selected="selected"':''}>Andhra Pradesh</option>
-																<option value="Arunachal Pradesh" ${address.state == 'Arunachal Pradesh'?'selected="selected"':''}>Arunachal Pradesh</option>
-																<option value="Assam" ${address.state == 'Assam'?'selected="selected"':''}>Assam</option>
-																<option value="Bihar" ${address.state == 'Bihar'?'selected="selected"':''}>Bihar</option>
-																<option value="Chandigarh" ${address.state == 'Chandigarh'?'selected="selected"':''}>Chandigarh</option>
-																<option value="Chhattisgarh" ${address.state == 'Chhattisgarh'?'selected="selected"':''}>Chhattisgarh</option>
-																<option value="Dadra and Nagar Haveli" ${address.state == 'Dadra and Nagar Haveli'?'selected="selected"':''}>Dadra and Nagar Haveli</option>
-																<option value="Daman and Diu" ${address.state == 'Daman and Diu'?'selected="selected"':''}>Daman and Diu</option>
-																<option value="Delhi" ${address.state == 'Delhi'?'selected="selected"':''}>Delhi</option>
-																<option value="Goa" ${address.state == 'Goa'?'selected="selected"':''}>Goa</option>
-																<option value="Gujarat" ${address.state == 'Gujarat'?'selected="selected"':''}>Gujarat</option>
-																<option value="Haryana" ${address.state == 'Haryana'?'selected="selected"':''}>Haryana</option>
-																<option value="Himachal Pradesh" ${address.state == 'Himachal Pradesh'?'selected="selected"':''}>Himachal Pradesh</option>
-																<option value="Jammu and Kashmir" ${address.state == 'Jammu and Kashmir'?'selected="selected"':''}>Jammu and Kashmir</option>
-																<option value="Jharkhand" ${address.state == 'Jharkhand'?'selected="selected"':''}>Jharkhand</option>
-																<option value="Karnataka" ${address.state == 'Karnataka'?'selected="selected"':''}>Karnataka</option>
-																<option value="Kerala" ${address.state == 'Kerala'?'selected="selected"':''}>Kerala</option>
-																<option value="Lakshadweep" ${address.state == 'Lakshadweep'?'selected="selected"':''}>Lakshadweep</option>
-																<option value="Madhya Pradesh" ${address.state == 'Madhya Pradesh'?'selected="selected"':''}>Madhya Pradesh</option>
-																<option value="Maharashtra" ${address.state == 'Maharashtra'?'selected="selected"':''}>Maharashtra</option>
-																<option value="Manipur" ${address.state == 'Manipur'?'selected="selected"':''}>Manipur</option>
-																<option value="Meghalaya" ${address.state == 'Meghalaya'?'selected="selected"':''}>Meghalaya</option>
-																<option value="Mizoram" ${address.state == 'Mizoram'?'selected="selected"':''}>Mizoram</option>
-																<option value="Nagaland" ${address.state == 'Nagaland'?'selected="selected"':''}>Nagaland</option>
-																<option value="Odisha" ${address.state == 'Odisha'?'selected="selected"':''}>Odisha</option>
-																<option value="Puducherry" ${address.state == 'Puducherry'?'selected="selected"':''}>Puducherry</option>
-																<option value="Punjab" ${address.state == 'Punjab'?'selected="selected"':''}>Punjab</option>
-																<option value="Rajasthan" ${address.state == 'Rajasthan'?'selected="selected"':''}>Rajasthan</option>
-																<option value="Sikkim" ${address.state == 'Sikkim'?'selected="selected"':''}>Sikkim</option>
-																<option value="Tamil Nadu" ${address.state == 'Tamil Nadu'?'selected="selected"':''}>Tamil Nadu</option>
-																<option value="Telangana" ${address.state == 'Telangana'?'selected="selected"':''}>Telangana</option>
-																<option value="Tripura" ${address.state == 'Tripura'?'selected="selected"':''}>Tripura</option>
-																<option value="Uttar Pradesh" ${address.state == 'Uttar Pradesh'?'selected="selected"':''}>Uttar Pradesh</option>
-																<option value="Uttarakhand" ${address.state == 'Uttarakhand'?'selected="selected"':''}>Uttarakhand</option>
-																<option value="West Bengal" ${address.state == 'West Bengal'?'selected="selected"':''}>West Bengal</option>
+															<option disabled="disabled" selected="selected"
+																value="Choose Select">Choose option</option>
+															<option value="Andaman and Nicobar Islands"
+																${address.state == 'Andaman and Nicobar Islands'?'selected="selected"':''}>Andaman
+																and Nicobar Islands</option>
+															<option value="Andhra Pradesh"
+																${address.state == 'Andhra Pradesh'?'selected="selected"':''}>Andhra
+																Pradesh</option>
+															<option value="Arunachal Pradesh"
+																${address.state == 'Arunachal Pradesh'?'selected="selected"':''}>Arunachal
+																Pradesh</option>
+															<option value="Assam"
+																${address.state == 'Assam'?'selected="selected"':''}>Assam</option>
+															<option value="Bihar"
+																${address.state == 'Bihar'?'selected="selected"':''}>Bihar</option>
+															<option value="Chandigarh"
+																${address.state == 'Chandigarh'?'selected="selected"':''}>Chandigarh</option>
+															<option value="Chhattisgarh"
+																${address.state == 'Chhattisgarh'?'selected="selected"':''}>Chhattisgarh</option>
+															<option value="Dadra and Nagar Haveli"
+																${address.state == 'Dadra and Nagar Haveli'?'selected="selected"':''}>Dadra
+																and Nagar Haveli</option>
+															<option value="Daman and Diu"
+																${address.state == 'Daman and Diu'?'selected="selected"':''}>Daman
+																and Diu</option>
+															<option value="Delhi"
+																${address.state == 'Delhi'?'selected="selected"':''}>Delhi</option>
+															<option value="Goa"
+																${address.state == 'Goa'?'selected="selected"':''}>Goa</option>
+															<option value="Gujarat"
+																${address.state == 'Gujarat'?'selected="selected"':''}>Gujarat</option>
+															<option value="Haryana"
+																${address.state == 'Haryana'?'selected="selected"':''}>Haryana</option>
+															<option value="Himachal Pradesh"
+																${address.state == 'Himachal Pradesh'?'selected="selected"':''}>Himachal
+																Pradesh</option>
+															<option value="Jammu and Kashmir"
+																${address.state == 'Jammu and Kashmir'?'selected="selected"':''}>Jammu
+																and Kashmir</option>
+															<option value="Jharkhand"
+																${address.state == 'Jharkhand'?'selected="selected"':''}>Jharkhand</option>
+															<option value="Karnataka"
+																${address.state == 'Karnataka'?'selected="selected"':''}>Karnataka</option>
+															<option value="Kerala"
+																${address.state == 'Kerala'?'selected="selected"':''}>Kerala</option>
+															<option value="Lakshadweep"
+																${address.state == 'Lakshadweep'?'selected="selected"':''}>Lakshadweep</option>
+															<option value="Madhya Pradesh"
+																${address.state == 'Madhya Pradesh'?'selected="selected"':''}>Madhya
+																Pradesh</option>
+															<option value="Maharashtra"
+																${address.state == 'Maharashtra'?'selected="selected"':''}>Maharashtra</option>
+															<option value="Manipur"
+																${address.state == 'Manipur'?'selected="selected"':''}>Manipur</option>
+															<option value="Meghalaya"
+																${address.state == 'Meghalaya'?'selected="selected"':''}>Meghalaya</option>
+															<option value="Mizoram"
+																${address.state == 'Mizoram'?'selected="selected"':''}>Mizoram</option>
+															<option value="Nagaland"
+																${address.state == 'Nagaland'?'selected="selected"':''}>Nagaland</option>
+															<option value="Odisha"
+																${address.state == 'Odisha'?'selected="selected"':''}>Odisha</option>
+															<option value="Puducherry"
+																${address.state == 'Puducherry'?'selected="selected"':''}>Puducherry</option>
+															<option value="Punjab"
+																${address.state == 'Punjab'?'selected="selected"':''}>Punjab</option>
+															<option value="Rajasthan"
+																${address.state == 'Rajasthan'?'selected="selected"':''}>Rajasthan</option>
+															<option value="Sikkim"
+																${address.state == 'Sikkim'?'selected="selected"':''}>Sikkim</option>
+															<option value="Tamil Nadu"
+																${address.state == 'Tamil Nadu'?'selected="selected"':''}>Tamil
+																Nadu</option>
+															<option value="Telangana"
+																${address.state == 'Telangana'?'selected="selected"':''}>Telangana</option>
+															<option value="Tripura"
+																${address.state == 'Tripura'?'selected="selected"':''}>Tripura</option>
+															<option value="Uttar Pradesh"
+																${address.state == 'Uttar Pradesh'?'selected="selected"':''}>Uttar
+																Pradesh</option>
+															<option value="Uttarakhand"
+																${address.state == 'Uttarakhand'?'selected="selected"':''}>Uttarakhand</option>
+															<option value="West Bengal"
+																${address.state == 'West Bengal'?'selected="selected"':''}>West
+																Bengal</option>
 														</select>
 														<!-- <div class="select-dropdown"></div> -->
 													</div>
@@ -369,11 +416,22 @@
 											id="securityquestion">
 											<option disabled="disabled" selected="selected">Choose
 												Security Question</option>
-												<option value="What is your nickname?" ${user.securityquestion == 'What is your nickname?'?'selected="selected"':''}>What is your nickname?</option>
-												<option value="What is the name of your first pet?" ${user.securityquestion == 'What is the name of your first pet?'?'selected="selected"':''}>What is the name of your first pet?</option>
-												<option value="What was your first car?" ${user.securityquestion == 'What was your first car?'?'selected="selected"':''}>What was your first car?</option>
-												<option value="What elementary school did you attend?" ${user.securityquestion == 'What elementary school did you attend?'?'selected="selected"':''}>What elementary school did you attend?</option>
-												<option value="What is the name of the town where you were born?" ${user.securityquestion == 'What is the name of the town where you were born?'?'selected="selected"':''}>What is the name of the town where you were born?</option>
+											<option value="What is your nickname?"
+												${user.securityquestion == 'What is your nickname?'?'selected="selected"':''}>What
+												is your nickname?</option>
+											<option value="What is the name of your first pet?"
+												${user.securityquestion == 'What is the name of your first pet?'?'selected="selected"':''}>What
+												is the name of your first pet?</option>
+											<option value="What was your first car?"
+												${user.securityquestion == 'What was your first car?'?'selected="selected"':''}>What
+												was your first car?</option>
+											<option value="What elementary school did you attend?"
+												${user.securityquestion == 'What elementary school did you attend?'?'selected="selected"':''}>What
+												elementary school did you attend?</option>
+											<option
+												value="What is the name of the town where you were born?"
+												${user.securityquestion == 'What is the name of the town where you were born?'?'selected="selected"':''}>What
+												is the name of the town where you were born?</option>
 										</select>
 										<!-- <div class="select-dropdown"></div> -->
 									</div>
@@ -455,7 +513,7 @@
 
 	<!-- Custom Script JavaScript -->
 	<!-- <script src="resources/js/forgotpasswordquestion.js"></script> -->
-	
+
 	<!-- Custom Script JavaScript -->
 	<script src="resources/js/addremovejs.js"></script>
 

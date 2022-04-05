@@ -13,7 +13,7 @@
 <title>User Registration</title>
 
 <!-- Bootstrap -->
-<link href="assets/library/bootstrap/css/bootstrap.min.css"
+<link href="resources/library/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 
 <!-- Fonts -->
@@ -97,10 +97,12 @@
 										${user.gender == 'Male'?'checked':''}> <span
 										class="checkmark"></span>
 									</label> <label class="radio-container m-r-55">Female <input
-										type="radio" name="genderradio" value="Female" ${user.gender == 'Female'?'checked':''}> <span
+										type="radio" name="genderradio" value="Female"
+										${user.gender == 'Female'?'checked':''}> <span
 										class="checkmark"></span>
 									</label> <label class="radio-container">Other <input
-										type="radio" name="genderradio" value="Other" ${user.gender == 'Other'?'checked':''}> <span
+										type="radio" name="genderradio" value="Other"
+										${user.gender == 'Other'?'checked':''}> <span
 										class="checkmark"></span>
 									</label>
 								</div>
@@ -115,8 +117,8 @@
 											<!-- <input class="input--style-5" type="date" name="dob" id="dob">
 											<input class="input--style-5 js-select-simple" type="text" name="datepicker"> -->
 											<input class="input--style-5 js-datepicker js-select-simple"
-												type="text" name="dob" id="dob" value="${user.dob}"> <i
-												class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
+												type="text" name="dob" id="dob" value="${user.dob}">
+											<i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
 										</div>
 									</div>
 								</div>
@@ -136,14 +138,15 @@
 									<div class="col-9">
 										<div class="input-group-desc">
 											<input class="input--style-5" type="text" name="phone"
-												maxlength="10"> <label class="label--desc">Phone
-												Number</label>
+												value="${user.phone}" maxlength="10"> <label
+												class="label--desc">Phone Number</label>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 						<div id="addresssection">
+						<c:forEach items="${addresslist}" var="address">
 							<div class="addressclass">
 								<fieldset>
 									<div class="form-row m-b-55">
@@ -153,8 +156,9 @@
 												<div class="col-12">
 													<div class="input-group-desc">
 														<input class="input--style-5" type="text"
-															name="addressline1"> <label class="label--desc">Address
-															Line 1</label>
+															name="addressline1" value="${address.addressline1}">
+														<label class="label--desc">Address Line 1</label>
+
 													</div>
 												</div>
 											</div>
@@ -167,8 +171,8 @@
 												<div class="col-12">
 													<div class="input-group-desc">
 														<input class="input--style-5" type="text"
-															name="addressline2"> <label class="label--desc">Address
-															Line 2</label>
+															name="addressline2" value="${address.addressline2}">
+														<label class="label--desc">Address Line 2</label>
 													</div>
 												</div>
 											</div>
@@ -180,7 +184,8 @@
 											<div class="row row-refine">
 												<div class="col-9">
 													<div class="input-group-desc">
-														<input class="input--style-5" type="text" name="city">
+														<input class="input--style-5" type="text" name="city"
+															value="${address.city}">
 													</div>
 												</div>
 											</div>
@@ -194,6 +199,89 @@
 													<select class="stateselect" name="states" id="states">
 														<option disabled="disabled" selected="selected">Choose
 															option</option>
+														<option value="Andaman and Nicobar Islands"
+															${address.state == 'Andaman and Nicobar Islands'?'selected="selected"':''}>Andaman
+															and Nicobar Islands</option>
+														<option value="Andhra Pradesh"
+															${address.state == 'Andhra Pradesh'?'selected="selected"':''}>Andhra
+															Pradesh</option>
+														<option value="Arunachal Pradesh"
+															${address.state == 'Arunachal Pradesh'?'selected="selected"':''}>Arunachal
+															Pradesh</option>
+														<option value="Assam"
+															${address.state == 'Assam'?'selected="selected"':''}>Assam</option>
+														<option value="Bihar"
+															${address.state == 'Bihar'?'selected="selected"':''}>Bihar</option>
+														<option value="Chandigarh"
+															${address.state == 'Chandigarh'?'selected="selected"':''}>Chandigarh</option>
+														<option value="Chhattisgarh"
+															${address.state == 'Chhattisgarh'?'selected="selected"':''}>Chhattisgarh</option>
+														<option value="Dadra and Nagar Haveli"
+															${address.state == 'Dadra and Nagar Haveli'?'selected="selected"':''}>Dadra
+															and Nagar Haveli</option>
+														<option value="Daman and Diu"
+															${address.state == 'Daman and Diu'?'selected="selected"':''}>Daman
+															and Diu</option>
+														<option value="Delhi"
+															${address.state == 'Delhi'?'selected="selected"':''}>Delhi</option>
+														<option value="Goa"
+															${address.state == 'Goa'?'selected="selected"':''}>Goa</option>
+														<option value="Gujarat"
+															${address.state == 'Gujarat'?'selected="selected"':''}>Gujarat</option>
+														<option value="Haryana"
+															${address.state == 'Haryana'?'selected="selected"':''}>Haryana</option>
+														<option value="Himachal Pradesh"
+															${address.state == 'Himachal Pradesh'?'selected="selected"':''}>Himachal
+															Pradesh</option>
+														<option value="Jammu and Kashmir"
+															${address.state == 'Jammu and Kashmir'?'selected="selected"':''}>Jammu
+															and Kashmir</option>
+														<option value="Jharkhand"
+															${address.state == 'Jharkhand'?'selected="selected"':''}>Jharkhand</option>
+														<option value="Karnataka"
+															${address.state == 'Karnataka'?'selected="selected"':''}>Karnataka</option>
+														<option value="Kerala"
+															${address.state == 'Kerala'?'selected="selected"':''}>Kerala</option>
+														<option value="Lakshadweep"
+															${address.state == 'Lakshadweep'?'selected="selected"':''}>Lakshadweep</option>
+														<option value="Madhya Pradesh"
+															${address.state == 'Madhya Pradesh'?'selected="selected"':''}>Madhya
+															Pradesh</option>
+														<option value="Maharashtra"
+															${address.state == 'Maharashtra'?'selected="selected"':''}>Maharashtra</option>
+														<option value="Manipur"
+															${address.state == 'Manipur'?'selected="selected"':''}>Manipur</option>
+														<option value="Meghalaya"
+															${address.state == 'Meghalaya'?'selected="selected"':''}>Meghalaya</option>
+														<option value="Mizoram"
+															${address.state == 'Mizoram'?'selected="selected"':''}>Mizoram</option>
+														<option value="Nagaland"
+															${address.state == 'Nagaland'?'selected="selected"':''}>Nagaland</option>
+														<option value="Odisha"
+															${address.state == 'Odisha'?'selected="selected"':''}>Odisha</option>
+														<option value="Puducherry"
+															${address.state == 'Puducherry'?'selected="selected"':''}>Puducherry</option>
+														<option value="Punjab"
+															${address.state == 'Punjab'?'selected="selected"':''}>Punjab</option>
+														<option value="Rajasthan"
+															${address.state == 'Rajasthan'?'selected="selected"':''}>Rajasthan</option>
+														<option value="Sikkim"
+															${address.state == 'Sikkim'?'selected="selected"':''}>Sikkim</option>
+														<option value="Tamil Nadu"
+															${address.state == 'Tamil Nadu'?'selected="selected"':''}>Tamil
+															Nadu</option>
+														<option value="Telangana"
+															${address.state == 'Telangana'?'selected="selected"':''}>Telangana</option>
+														<option value="Tripura"
+															${address.state == 'Tripura'?'selected="selected"':''}>Tripura</option>
+														<option value="Uttar Pradesh"
+															${address.state == 'Uttar Pradesh'?'selected="selected"':''}>Uttar
+															Pradesh</option>
+														<option value="Uttarakhand"
+															${address.state == 'Uttarakhand'?'selected="selected"':''}>Uttarakhand</option>
+														<option value="West Bengal"
+															${address.state == 'West Bengal'?'selected="selected"':''}>West
+															Bengal</option>
 													</select>
 													<div class="select-dropdown"></div>
 												</div>
@@ -206,7 +294,8 @@
 											<div class="row row-refine">
 												<div class="col-6">
 													<div class="input-group-desc">
-														<input class="input--style-5" type="text" name="zipcode">
+														<input class="input--style-5" type="text" name="zipcode"
+															value="${address.zipcode}">
 													</div>
 												</div>
 											</div>
@@ -219,6 +308,7 @@
 									</div>
 								</fieldset>
 							</div>
+							</c:forEach>
 						</div>
 						<div class="input-group addremovebtn">
 							<input type="button"
@@ -296,7 +386,8 @@
 								<div class="row row-refine">
 									<div class="col-9">
 										<div class="input-group-desc">
-											<input class="input--style-5" type="password" name="password">
+											<input class="input--style-5" type="password" name="password"
+												value="${user.password}">
 										</div>
 									</div>
 								</div>
@@ -309,7 +400,7 @@
 									<div class="col-9">
 										<div class="input-group-desc">
 											<input class="input--style-5" type="password"
-												name="confirmpassword">
+												name="confirmpassword" value="${user.password}">
 										</div>
 									</div>
 								</div>
@@ -324,6 +415,22 @@
 											id="securityquestion">
 											<option disabled="disabled" selected="selected">Choose
 												Security Question</option>
+											<option value="What is your nickname?"
+												${user.securityquestion == 'What is your nickname?'?'selected="selected"':''}>What
+												is your nickname?</option>
+											<option value="What is the name of your first pet?"
+												${user.securityquestion == 'What is the name of your first pet?'?'selected="selected"':''}>What
+												is the name of your first pet?</option>
+											<option value="What was your first car?"
+												${user.securityquestion == 'What was your first car?'?'selected="selected"':''}>What
+												was your first car?</option>
+											<option value="What elementary school did you attend?"
+												${user.securityquestion == 'What elementary school did you attend?'?'selected="selected"':''}>What
+												elementary school did you attend?</option>
+											<option
+												value="What is the name of the town where you were born?"
+												${user.securityquestion == 'What is the name of the town where you were born?'?'selected="selected"':''}>What
+												is the name of the town where you were born?</option>
 										</select>
 										<!-- <div class="select-dropdown"></div> -->
 									</div>
@@ -337,8 +444,8 @@
 									<div class="col-12">
 										<div class="input-group-desc">
 											<input class="input--style-5" type="text"
-												name="securityanswer"> <label class="label--desc">Your
-												Security Answer</label>
+												name="securityanswer" value="${user.securityanswer}">
+											<label class="label--desc">Your Security Answer</label>
 										</div>
 									</div>
 								</div>
@@ -400,16 +507,13 @@
 	<script src="resources/js/moment.min.js"></script>
 	<script src="resources/js/daterangepicker.js"></script>
 
-	<!-- Select jQuery
-	<script src="resources/js/select2.min.js"></script> -->
-
 	<!-- Custom Script Validation JavaScript -->
 	<script src="resources/js/validation.js"></script>
 
 	<!-- Custom Date Script JavaScript -->
 	<script src="resources/js/date.js"></script>
 
-	<script>
+	<!-- <script>
 		$(document).ready(function() {
 			var currentDate = new Date();
 			$('.js-datepicker').datepicker({
@@ -424,10 +528,7 @@
 				}
 			});
 		});
-	</script>
-
-	<!-- Custom Script JavaScript -->
-	<script src="resources/js/forgotpasswordquestion.js"></script>
+	</script> -->
 
 	<!-- Custom Script JavaScript -->
 	<script src="resources/js/script.js"></script>
