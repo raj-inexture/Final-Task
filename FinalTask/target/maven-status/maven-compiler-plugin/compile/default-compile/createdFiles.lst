@@ -22,15 +22,12 @@ service\ForgotPasswordImpl.class
 controller\ViewUsersServlet.class
 dao\UserAddressDAOImpl.class
 service\ViewUsersImpl.class
-model\DummyAddressBeanModel.class
 dao\UserDetailsDAOImpl.class
 controller\LoginServlet.class
-dao\DummyUserAddressDAOImpl.class
-dao\DummyUserAddressDAOInterface.class
-service\UpdateAddressInterface.class
+controller\ViewUserAddress.class
 util\DatabaseConnection.class
 service\UserRegistrationImpl.class
-service\UpdateAddressImpl.class
+controller\ViewUserTechnology.class
 dao\UserTechnologiesDAOImpl.class
 controller\DeleteUserServlet.class
 dao\UserLogsDAOInterface.class

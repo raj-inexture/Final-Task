@@ -1,7 +1,5 @@
 $(document).ready(function() {
-	
-	debugger
-	
+
 	var table = $('#table_id').DataTable({
 		"processing": true,
 		"ajax": {
@@ -18,13 +16,28 @@ $(document).ready(function() {
 
 	$('#table_id tbody').on('click', '[id*=editUser]', function() {
 		var usersData = table.row($(this).parents('tr')).data();
-		window.location = "ViewUsersServlet?email="+usersData[3];
+		window.location = "ViewUsersServlet?email=" + usersData[3];
 		/*alert(usersData[3]);*/
 	});
 
 	$('#table_id tbody').on('click', '[id*=deleteUser]', function() {
 		var usersData = table.row($(this).parents('tr')).data();
 		/*window.location = "DeleteUserServlet?userid="+usersData[0];*/
-		console.log(usersData[0]);
+		var row = this;
+		var userid = +this.id;
+		
+		$.ajax({
+			"url": "DeleteUserServlet",
+			"type": "get",
+			"data": ({
+				userid: usersData[0],
+			}),
+			success: function(response) {
+				$(row).closest('tr').fadeOut(100, function() {
+					$(this).remove();
+					$('#table_id').DataTable().ajax.reload();
+				});
+			}
+		});
 	});
 });

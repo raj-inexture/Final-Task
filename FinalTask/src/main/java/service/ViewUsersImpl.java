@@ -61,13 +61,23 @@ public class ViewUsersImpl implements ViewUsersInterface {
 
 	}
 
-	public int deleteUser(UserDetailsBeanModel user) {
+	public void deleteUser(UserDetailsBeanModel user) {
 
 		UserDetailsDAOInterface userDetails = new UserDetailsDAOImpl();
 
-		int result = userDetails.deleteUser(user);
+		userDetails.deleteUser(user);
 
-		return result;
+	}
+
+	public List<UserDetailsBeanModel> viewUserData(UserDetailsBeanModel user) {
+
+		UserDetailsDAOInterface userList = new UserDetailsDAOImpl();
+
+		List<UserDetailsBeanModel> listUser = new LinkedList<UserDetailsBeanModel>();
+
+		listUser = userList.viewAllUserProfileData(user);
+
+		return listUser;
 
 	}
 }

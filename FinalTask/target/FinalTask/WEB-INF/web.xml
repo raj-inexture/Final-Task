@@ -76,6 +76,18 @@
 		<description></description>
 		<servlet-class>controller.UpdateUserServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>ViewUserAddress</servlet-name>
+		<display-name>ViewUserAddress</display-name>
+		<description></description>
+		<servlet-class>controller.ViewUserAddress</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>ViewUserTechnology</servlet-name>
+		<display-name>ViewUserTechnology</display-name>
+		<description></description>
+		<servlet-class>controller.ViewUserTechnology</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>LoginServlet</servlet-name>
@@ -120,6 +132,14 @@
 	<servlet-mapping>
 		<servlet-name>UpdateUserServlet</servlet-name>
 		<url-pattern>/UpdateUserServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ViewUserAddress</servlet-name>
+		<url-pattern>/ViewUserAddress</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ViewUserTechnology</servlet-name>
+		<url-pattern>/ViewUserTechnology</url-pattern>
 	</servlet-mapping>
 
 	<welcome-file-list>

@@ -74,26 +74,6 @@
 	<!-- Custom Date Script JavaScript -->
 	<script src="resources/js/date.js"></script>
 
-	<!-- <script>
-		$(document).ready(function() {
-			var currentDate = new Date();
-			$('.js-datepicker').datepicker({
-				endDate : "currentDate",
-				maxDate : currentDate
-			}).on('changeDate', function(ev) {
-				$(this).datepicker('hide');
-			});
-			$('.js-datepicker').keyup(function() {
-				if (this.value.match(/[^0-9]/g)) {
-					this.value = this.value.replace(/[^0-9^-]/g, '');
-				}
-			});
-		});
-	</script> -->
-
-	<!-- Custom Script JavaScript -->
-	<script src="resources/js/script.js"></script>
-
 </body>
 
 </html>

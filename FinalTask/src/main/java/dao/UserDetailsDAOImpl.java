@@ -261,7 +261,7 @@ public class UserDetailsDAOImpl implements UserDetailsDAOInterface {
 		return null;
 	}
 
-	public int deleteUser(UserDetailsBeanModel user) {
+	public void deleteUser(UserDetailsBeanModel user) {
 
 		int i = 0;
 
@@ -274,15 +274,48 @@ public class UserDetailsDAOImpl implements UserDetailsDAOInterface {
 
 			i = stmt.executeUpdate();
 
-			if (i != 0) {
-				return i;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public List<UserDetailsBeanModel> viewAllUserProfileData(UserDetailsBeanModel user) {
+
+		try {
+			conn = DatabaseConnection.getInstance().getConnection();
+
+			List<UserDetailsBeanModel> userList = new LinkedList<UserDetailsBeanModel>();
+
+			PreparedStatement stmt = conn.prepareStatement("select * from userdetails where email = ?");
+
+			stmt.setString(1, user.getEmail());
+
+			ResultSet rs = stmt.executeQuery();
+
+			if (rs.next()) {
+				user.setUserid(rs.getInt(1));
+				user.setFirstname(rs.getString(2));
+				user.setLastname(rs.getString(3));
+				user.setEmail(rs.getString(4));
+				user.setGender(rs.getString(5));
+				user.setDob(rs.getString(6));
+				user.setPhone(rs.getString(7));
+				user.setPassword(rs.getString(8));
+				user.setProfilephoto(rs.getBinaryStream(9));
+				user.setUserrole(rs.getString(10));
+				user.setSecurityquestion(rs.getString(11));
+				user.setSecurityanswer(rs.getString(12));
+
+				userList.add(user);
 			}
+
+			return userList;
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return 0;
+		return null;
 	}
 
 }
