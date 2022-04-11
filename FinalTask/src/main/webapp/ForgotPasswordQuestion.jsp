@@ -77,6 +77,17 @@
 											id="securityquestion">
 											<option disabled="disabled" selected="selected">Choose
 												Security Question</option>
+											<option value="What is your nickname?">What is your
+												nickname?</option>
+											<option value="What is the name of your first pet?">What
+												is the name of your first pet?</option>
+											<option value="What was your first car?">What was
+												your first car?</option>
+											<option value="What elementary school did you attend?">What
+												elementary school did you attend?</option>
+											<option
+												value="What is the name of the town where you were born?">What
+												is the name of the town where you were born?</option>
 										</select>
 										<div class="select-dropdown"></div>
 									</div>

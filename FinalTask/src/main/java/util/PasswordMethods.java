@@ -1,43 +1,64 @@
 package util;
 
-import java.io.UnsupportedEncodingException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.Formatter;
+import java.nio.charset.StandardCharsets;
+import java.security.spec.KeySpec;
+import java.util.Base64;
+
+import javax.crypto.Cipher;
+import javax.crypto.SecretKey;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.PBEKeySpec;
+import javax.crypto.spec.SecretKeySpec;
 
 public class PasswordMethods {
 
-	public String hashPassword(String password) {
+	private static final String SECRET_KEY = "secret_key";
 
-		String hashedPassword = "";
-		MessageDigest crypt = null;
+	private static final String SALT = "salt";
 
+	public String encrypt(String strToEncrypt) {
 		try {
 
-			crypt = MessageDigest.getInstance("SHA-1");
-			crypt.reset();
-			crypt.update(password.getBytes("UTF-8"));
+			byte[] iv = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+			IvParameterSpec ivspec = new IvParameterSpec(iv);
 
-		} catch (NoSuchAlgorithmException e) {
+			SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256");
 
-			e.printStackTrace();
+			KeySpec spec = new PBEKeySpec(SECRET_KEY.toCharArray(), SALT.getBytes(), 65536, 256);
+			SecretKey tmp = factory.generateSecret(spec);
+			SecretKeySpec secretKey = new SecretKeySpec(tmp.getEncoded(), "AES");
 
-		} catch (UnsupportedEncodingException e) {
+			Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+			cipher.init(Cipher.ENCRYPT_MODE, secretKey, ivspec);
 
-			e.printStackTrace();
-
+			return Base64.getEncoder().encodeToString(cipher.doFinal(strToEncrypt.getBytes(StandardCharsets.UTF_8)));
+		} catch (Exception e) {
+			System.out.println("Error while encrypting: " + e.toString());
 		}
+		return null;
+	}
 
-		Formatter formatter = new Formatter();
+	public String decrypt(String strToDecrypt) {
+		try {
 
-		for (byte b : crypt.digest()) {
+			byte[] iv = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
-			formatter.format("%2x", b);
+			IvParameterSpec ivspec = new IvParameterSpec(iv);
 
+			SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256");
+
+			KeySpec spec = new PBEKeySpec(SECRET_KEY.toCharArray(), SALT.getBytes(), 65536, 256);
+			SecretKey tmp = factory.generateSecret(spec);
+			SecretKeySpec secretKey = new SecretKeySpec(tmp.getEncoded(), "AES");
+
+			Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
+			cipher.init(Cipher.DECRYPT_MODE, secretKey, ivspec);
+
+			return new String(cipher.doFinal(Base64.getDecoder().decode(strToDecrypt)));
+		} catch (Exception e) {
+			System.out.println("Error while decrypting: " + e.toString());
 		}
-
-		hashedPassword = formatter.toString();
-
-		return hashedPassword;
+		return null;
 	}
 }

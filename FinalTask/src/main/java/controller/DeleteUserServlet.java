@@ -41,23 +41,13 @@ public class DeleteUserServlet extends HttpServlet {
 
 		int userid = Integer.parseInt(useridstr);
 
-		out.println("id" + userid);
-
 		UserDetailsBeanModel user = new UserDetailsBeanModel();
 
 		user.setUserid(userid);
 
 		ViewUsersInterface userView = new ViewUsersImpl();
 
-		int result = userView.deleteUser(user);
-
-		if (result != 0) {
-			out.println("Done");
-			response.sendRedirect("admin.jsp");
-		} else {
-			out.println("Not Done");
-			response.sendRedirect("login.jsp");
-		}
+		userView.deleteUser(user);
 	}
 
 	/**

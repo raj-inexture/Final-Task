@@ -52,8 +52,8 @@
 					<h2 class="title">User Registration Form</h2>
 				</div>
 				<div class="card-body">
-					<form method="POST" action="RegistrationServlet"
-						enctype="multipart/form-data">
+					<form method="POST" action="UpdateUserServlet"
+						enctype="multipart/form-data" id="userform">
 						<div class="form-row m-b-55">
 							<div class="name requiredsign">Name</div>
 							<div class="value">
@@ -61,14 +61,14 @@
 									<div class="col-2">
 										<div class="input-group-desc">
 											<input class="input--style-5" type="text" name="firstname"
-												value="${user.firstname}"> <label
-												class="label--desc">First Name</label>
+												id="firstname"> <label class="label--desc">First
+												Name</label>
 										</div>
 									</div>
 									<div class="col-2">
 										<div class="input-group-desc">
 											<input class="input--style-5" type="text" name="lastname"
-												value="${user.lastname}"> <label class="label--desc">Last
+												id="lastname"> <label class="label--desc">Last
 												Name</label>
 										</div>
 									</div>
@@ -82,7 +82,7 @@
 									<div class="col-9">
 										<div class="input-group-desc">
 											<input class="input--style-5" type="email" name="email"
-												value="${user.email}">
+												id="email">
 										</div>
 									</div>
 								</div>
@@ -93,16 +93,13 @@
 							<div class="value">
 								<div class="input-group">
 									<label class="radio-container m-r-55">Male <input
-										type="radio" name="genderradio" value="Male"
-										${user.gender == 'Male'?'checked':''}> <span
+										type="radio" name="genderradio" value="Male"> <span
 										class="checkmark"></span>
 									</label> <label class="radio-container m-r-55">Female <input
-										type="radio" name="genderradio" value="Female"
-										${user.gender == 'Female'?'checked':''}> <span
+										type="radio" name="genderradio" value="Female"> <span
 										class="checkmark"></span>
 									</label> <label class="radio-container">Other <input
-										type="radio" name="genderradio" value="Other"
-										${user.gender == 'Other'?'checked':''}> <span
+										type="radio" name="genderradio" value="Other"> <span
 										class="checkmark"></span>
 									</label>
 								</div>
@@ -117,8 +114,8 @@
 											<!-- <input class="input--style-5" type="date" name="dob" id="dob">
 											<input class="input--style-5 js-select-simple" type="text" name="datepicker"> -->
 											<input class="input--style-5 js-datepicker js-select-simple"
-												type="text" name="dob" id="dob" value="${user.dob}">
-											<i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
+												type="text" name="dob" id="dob"> <i
+												class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
 										</div>
 									</div>
 								</div>
@@ -138,7 +135,7 @@
 									<div class="col-9">
 										<div class="input-group-desc">
 											<input class="input--style-5" type="text" name="phone"
-												value="${user.phone}" maxlength="10"> <label
+												id="phone" maxlength="10"> <label
 												class="label--desc">Phone Number</label>
 										</div>
 									</div>
@@ -146,7 +143,6 @@
 							</div>
 						</div>
 						<div id="addresssection">
-						<c:forEach items="${addresslist}" var="address">
 							<div class="addressclass">
 								<fieldset>
 									<div class="form-row m-b-55">
@@ -156,8 +152,8 @@
 												<div class="col-12">
 													<div class="input-group-desc">
 														<input class="input--style-5" type="text"
-															name="addressline1" value="${address.addressline1}">
-														<label class="label--desc">Address Line 1</label>
+															name="addressline1" id="addresslineone"> <label
+															class="label--desc">Address Line 1</label>
 
 													</div>
 												</div>
@@ -171,8 +167,8 @@
 												<div class="col-12">
 													<div class="input-group-desc">
 														<input class="input--style-5" type="text"
-															name="addressline2" value="${address.addressline2}">
-														<label class="label--desc">Address Line 2</label>
+															name="addressline2" id="addresslinetwo"> <label
+															class="label--desc">Address Line 2</label>
 													</div>
 												</div>
 											</div>
@@ -185,7 +181,7 @@
 												<div class="col-9">
 													<div class="input-group-desc">
 														<input class="input--style-5" type="text" name="city"
-															value="${address.city}">
+															id="city">
 													</div>
 												</div>
 											</div>
@@ -199,89 +195,46 @@
 													<select class="stateselect" name="states" id="states">
 														<option disabled="disabled" selected="selected">Choose
 															option</option>
-														<option value="Andaman and Nicobar Islands"
-															${address.state == 'Andaman and Nicobar Islands'?'selected="selected"':''}>Andaman
+														<option value="Andaman and Nicobar Islands">Andaman
 															and Nicobar Islands</option>
-														<option value="Andhra Pradesh"
-															${address.state == 'Andhra Pradesh'?'selected="selected"':''}>Andhra
+														<option value="Andhra Pradesh">Andhra Pradesh</option>
+														<option value="Arunachal Pradesh">Arunachal
 															Pradesh</option>
-														<option value="Arunachal Pradesh"
-															${address.state == 'Arunachal Pradesh'?'selected="selected"':''}>Arunachal
-															Pradesh</option>
-														<option value="Assam"
-															${address.state == 'Assam'?'selected="selected"':''}>Assam</option>
-														<option value="Bihar"
-															${address.state == 'Bihar'?'selected="selected"':''}>Bihar</option>
-														<option value="Chandigarh"
-															${address.state == 'Chandigarh'?'selected="selected"':''}>Chandigarh</option>
-														<option value="Chhattisgarh"
-															${address.state == 'Chhattisgarh'?'selected="selected"':''}>Chhattisgarh</option>
-														<option value="Dadra and Nagar Haveli"
-															${address.state == 'Dadra and Nagar Haveli'?'selected="selected"':''}>Dadra
-															and Nagar Haveli</option>
-														<option value="Daman and Diu"
-															${address.state == 'Daman and Diu'?'selected="selected"':''}>Daman
-															and Diu</option>
-														<option value="Delhi"
-															${address.state == 'Delhi'?'selected="selected"':''}>Delhi</option>
-														<option value="Goa"
-															${address.state == 'Goa'?'selected="selected"':''}>Goa</option>
-														<option value="Gujarat"
-															${address.state == 'Gujarat'?'selected="selected"':''}>Gujarat</option>
-														<option value="Haryana"
-															${address.state == 'Haryana'?'selected="selected"':''}>Haryana</option>
-														<option value="Himachal Pradesh"
-															${address.state == 'Himachal Pradesh'?'selected="selected"':''}>Himachal
-															Pradesh</option>
-														<option value="Jammu and Kashmir"
-															${address.state == 'Jammu and Kashmir'?'selected="selected"':''}>Jammu
-															and Kashmir</option>
-														<option value="Jharkhand"
-															${address.state == 'Jharkhand'?'selected="selected"':''}>Jharkhand</option>
-														<option value="Karnataka"
-															${address.state == 'Karnataka'?'selected="selected"':''}>Karnataka</option>
-														<option value="Kerala"
-															${address.state == 'Kerala'?'selected="selected"':''}>Kerala</option>
-														<option value="Lakshadweep"
-															${address.state == 'Lakshadweep'?'selected="selected"':''}>Lakshadweep</option>
-														<option value="Madhya Pradesh"
-															${address.state == 'Madhya Pradesh'?'selected="selected"':''}>Madhya
-															Pradesh</option>
-														<option value="Maharashtra"
-															${address.state == 'Maharashtra'?'selected="selected"':''}>Maharashtra</option>
-														<option value="Manipur"
-															${address.state == 'Manipur'?'selected="selected"':''}>Manipur</option>
-														<option value="Meghalaya"
-															${address.state == 'Meghalaya'?'selected="selected"':''}>Meghalaya</option>
-														<option value="Mizoram"
-															${address.state == 'Mizoram'?'selected="selected"':''}>Mizoram</option>
-														<option value="Nagaland"
-															${address.state == 'Nagaland'?'selected="selected"':''}>Nagaland</option>
-														<option value="Odisha"
-															${address.state == 'Odisha'?'selected="selected"':''}>Odisha</option>
-														<option value="Puducherry"
-															${address.state == 'Puducherry'?'selected="selected"':''}>Puducherry</option>
-														<option value="Punjab"
-															${address.state == 'Punjab'?'selected="selected"':''}>Punjab</option>
-														<option value="Rajasthan"
-															${address.state == 'Rajasthan'?'selected="selected"':''}>Rajasthan</option>
-														<option value="Sikkim"
-															${address.state == 'Sikkim'?'selected="selected"':''}>Sikkim</option>
-														<option value="Tamil Nadu"
-															${address.state == 'Tamil Nadu'?'selected="selected"':''}>Tamil
-															Nadu</option>
-														<option value="Telangana"
-															${address.state == 'Telangana'?'selected="selected"':''}>Telangana</option>
-														<option value="Tripura"
-															${address.state == 'Tripura'?'selected="selected"':''}>Tripura</option>
-														<option value="Uttar Pradesh"
-															${address.state == 'Uttar Pradesh'?'selected="selected"':''}>Uttar
-															Pradesh</option>
-														<option value="Uttarakhand"
-															${address.state == 'Uttarakhand'?'selected="selected"':''}>Uttarakhand</option>
-														<option value="West Bengal"
-															${address.state == 'West Bengal'?'selected="selected"':''}>West
-															Bengal</option>
+														<option value="Assam">Assam</option>
+														<option value="Bihar">Bihar</option>
+														<option value="Chandigarh">Chandigarh</option>
+														<option value="Chhattisgarh">Chhattisgarh</option>
+														<option value="Dadra and Nagar Haveli">Dadra and
+															Nagar Haveli</option>
+														<option value="Daman and Diu">Daman and Diu</option>
+														<option value="Delhi">Delhi</option>
+														<option value="Goa">Goa</option>
+														<option value="Gujarat">Gujarat</option>
+														<option value="Haryana">Haryana</option>
+														<option value="Himachal Pradesh">Himachal Pradesh</option>
+														<option value="Jammu and Kashmir">Jammu and
+															Kashmir</option>
+														<option value="Jharkhand">Jharkhand</option>
+														<option value="Karnataka">Karnataka</option>
+														<option value="Kerala">Kerala</option>
+														<option value="Lakshadweep">Lakshadweep</option>
+														<option value="Madhya Pradesh">Madhya Pradesh</option>
+														<option value="Maharashtra">Maharashtra</option>
+														<option value="Manipur">Manipur</option>
+														<option value="Meghalaya">Meghalaya</option>
+														<option value="Mizoram">Mizoram</option>
+														<option value="Nagaland">Nagaland</option>
+														<option value="Odisha">Odisha</option>
+														<option value="Puducherry">Puducherry</option>
+														<option value="Punjab">Punjab</option>
+														<option value="Rajasthan">Rajasthan</option>
+														<option value="Sikkim">Sikkim</option>
+														<option value="Tamil Nadu">Tamil Nadu</option>
+														<option value="Telangana">Telangana</option>
+														<option value="Tripura">Tripura</option>
+														<option value="Uttar Pradesh">Uttar Pradesh</option>
+														<option value="Uttarakhand">Uttarakhand</option>
+														<option value="West Bengal">West Bengal</option>
 													</select>
 													<div class="select-dropdown"></div>
 												</div>
@@ -295,7 +248,7 @@
 												<div class="col-6">
 													<div class="input-group-desc">
 														<input class="input--style-5" type="text" name="zipcode"
-															value="${address.zipcode}">
+															id="zipcode">
 													</div>
 												</div>
 											</div>
@@ -308,12 +261,11 @@
 									</div>
 								</fieldset>
 							</div>
-							</c:forEach>
 						</div>
 						<div class="input-group addremovebtn">
 							<input type="button"
 								class="btn btn--radius-2 btn--red m-b-55 addsection clone"
-								value="Add New Address Block">
+								value="Add New Address Block" id="addbutton">
 						</div>
 						<div class="form-row">
 							<div class="name requiredsign">Technologies</div>
@@ -322,57 +274,57 @@
 									<table class="table table-striped table-condensed">
 										<tr>
 											<td><label class="checkbox-container m-r-150">HTML<input
-													type="checkbox" name="exist" value="HTML"> <span
+													type="checkbox" name="technology" value="HTML"> <span
 													class="checkspan"></span>
 											</label></td>
 											<td><label class="checkbox-container m-r-55">Core
-													Java<input type="checkbox" name="exist" value="Core Java">
-													<span class="checkspan"></span>
+													Java<input type="checkbox" name="technology"
+													value="Core Java"> <span class="checkspan"></span>
 											</label></td>
 										</tr>
 										<tr>
 											<td><label class="checkbox-container">CSS<input
-													type="checkbox" name="exist" value="CSS"> <span
+													type="checkbox" name="technology" value="CSS"> <span
 													class="checkspan"></span>
 											</label></td>
 											<td><label class="checkbox-container">JDBC<input
-													type="checkbox" name="exist" value="JDBC"> <span
+													type="checkbox" name="technology" value="JDBC"> <span
 													class="checkspan"></span>
 											</label></td>
 										</tr>
 										<tr>
 											<td><label class="checkbox-container">JavaScript<input
-													type="checkbox" name="exist" value="JavaScript"> <span
-													class="checkspan"></span>
+													type="checkbox" name="technology" value="JavaScript">
+													<span class="checkspan"></span>
 											</label></td>
 											<td><label class="checkbox-container">Servlet<input
-													type="checkbox" name="exist" value="Servlet"> <span
-													class="checkspan"></span>
+													type="checkbox" name="technology" value="Servlet">
+													<span class="checkspan"></span>
 											</label></td>
 										</tr>
 										<tr>
 											<td><label class="checkbox-container">Bootstrap<input
-													type="checkbox" name="exist" value="Bootstrap"> <span
-													class="checkspan"></span>
+													type="checkbox" name="technology" value="Bootstrap">
+													<span class="checkspan"></span>
 											</label></td>
 											<td><label class="checkbox-container">JSP<input
-													type="checkbox" name="exist" value="JSP"> <span
+													type="checkbox" name="technology" value="JSP"> <span
 													class="checkspan"></span>
 											</label></td>
 										</tr>
 										<tr>
 											<td><label class="checkbox-container">jQuery<input
-													type="checkbox" name="exist" value="jQuery"> <span
+													type="checkbox" name="technology" value="jQuery"> <span
 													class="checkspan"></span>
 											</label></td>
 											<td><label class="checkbox-container">MySQL<input
-													type="checkbox" name="exist" value="MySQL"> <span
+													type="checkbox" name="technology" value="MySQL"> <span
 													class="checkspan"></span>
 											</label></td>
 										</tr>
 										<tr>
 											<td><label class="checkbox-container">AJAX<input
-													type="checkbox" name="exist" value="AJAX"> <span
+													type="checkbox" name="technology" value="AJAX"> <span
 													class="checkspan"></span>
 											</label></td>
 										</tr>
@@ -387,7 +339,7 @@
 									<div class="col-9">
 										<div class="input-group-desc">
 											<input class="input--style-5" type="password" name="password"
-												value="${user.password}">
+												id="password">
 										</div>
 									</div>
 								</div>
@@ -400,7 +352,7 @@
 									<div class="col-9">
 										<div class="input-group-desc">
 											<input class="input--style-5" type="password"
-												name="confirmpassword" value="${user.password}">
+												name="confirmpassword" id="confirmpassword">
 										</div>
 									</div>
 								</div>
@@ -415,21 +367,16 @@
 											id="securityquestion">
 											<option disabled="disabled" selected="selected">Choose
 												Security Question</option>
-											<option value="What is your nickname?"
-												${user.securityquestion == 'What is your nickname?'?'selected="selected"':''}>What
-												is your nickname?</option>
-											<option value="What is the name of your first pet?"
-												${user.securityquestion == 'What is the name of your first pet?'?'selected="selected"':''}>What
+											<option value="What is your nickname?">What is your
+												nickname?</option>
+											<option value="What is the name of your first pet?">What
 												is the name of your first pet?</option>
-											<option value="What was your first car?"
-												${user.securityquestion == 'What was your first car?'?'selected="selected"':''}>What
-												was your first car?</option>
-											<option value="What elementary school did you attend?"
-												${user.securityquestion == 'What elementary school did you attend?'?'selected="selected"':''}>What
+											<option value="What was your first car?">What was
+												your first car?</option>
+											<option value="What elementary school did you attend?">What
 												elementary school did you attend?</option>
 											<option
-												value="What is the name of the town where you were born?"
-												${user.securityquestion == 'What is the name of the town where you were born?'?'selected="selected"':''}>What
+												value="What is the name of the town where you were born?">What
 												is the name of the town where you were born?</option>
 										</select>
 										<!-- <div class="select-dropdown"></div> -->
@@ -444,8 +391,8 @@
 									<div class="col-12">
 										<div class="input-group-desc">
 											<input class="input--style-5" type="text"
-												name="securityanswer" value="${user.securityanswer}">
-											<label class="label--desc">Your Security Answer</label>
+												name="securityanswer" id="securityanswer"> <label
+												class="label--desc">Your Security Answer</label>
 										</div>
 									</div>
 								</div>
@@ -469,8 +416,8 @@
 							<div class="value">
 								<div class="input-group">
 									<label class="checkbox-container m-r-55">I agree to the
-										Terms of Services above. <input type="checkbox" name="exist"
-										required="required"> <span class="checkspan"></span>
+										Terms of Services above. <input type="checkbox" name="terms">
+										<span class="checkspan"></span>
 									</label>
 								</div>
 							</div>
@@ -489,12 +436,16 @@
 		</div>
 	</div>
 
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<!-- jQuery (necessary for Bootstrap' s JavaScript plugins) -->
 	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+		
+	</script>
 
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
-	<script src="resources/library/bootstrap/js/bootstrap.min.js"></script>
+	<script src="resources/library/bootstrap/js/bootstrap.min.js">
+		
+	</script>
 
 	<!-- Multiple Address jQuery Plugin -->
 	<script src="resources/js/jquery-cloneya.js"></script>
@@ -513,22 +464,7 @@
 	<!-- Custom Date Script JavaScript -->
 	<script src="resources/js/date.js"></script>
 
-	<!-- <script>
-		$(document).ready(function() {
-			var currentDate = new Date();
-			$('.js-datepicker').datepicker({
-				endDate : "currentDate",
-				maxDate : currentDate
-			}).on('changeDate', function(ev) {
-				$(this).datepicker('hide');
-			});
-			$('.js-datepicker').keyup(function() {
-				if (this.value.match(/[^0-9]/g)) {
-					this.value = this.value.replace(/[^0-9^-]/g, '');
-				}
-			});
-		});
-	</script> -->
+	<script src="resources/js/getuserdata.js"></script>
 
 	<!-- Custom Script JavaScript -->
 	<script src="resources/js/script.js"></script>

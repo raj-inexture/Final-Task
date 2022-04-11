@@ -79,4 +79,27 @@ public class UserAddressDAOImpl implements UserAddressDAOInterface {
 		return null;
 	}
 
+	public int deleteDuplicateAddress() {
+
+		int i = 0;
+
+		try {
+			conn = DatabaseConnection.getInstance().getConnection();
+
+			PreparedStatement stmt = conn.prepareStatement(
+					"delete a1 from address a1 inner join address a2 where a1.id > a2.id and (a1.userid = a2.userid and a1.addressline1 = a2.addressline1 and a1.addressline2 = a2.addressline2 and a1.city = a2.city and a1.state = a2.state and a1.zipcode = a2.zipcode)");
+
+			i = stmt.executeUpdate();
+
+			if (i != 0) {
+				return i;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return 0;
+	}
+
 }

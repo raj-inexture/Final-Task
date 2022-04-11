@@ -70,4 +70,27 @@ public class UserTechnologiesDAOImpl implements UserTechnologiesDAOInterface {
 
 		return null;
 	}
+
+	public int deleteDuplicateTechnology() {
+
+		int i = 0;
+
+		try {
+			conn = DatabaseConnection.getInstance().getConnection();
+
+			PreparedStatement stmt = conn.prepareStatement(
+					"delete t1 from technologies t1 inner join technologies t2 where t1.id > t2.id and (t1.userid = t2.userid and t1.technology = t2.technology)");
+
+			i = stmt.executeUpdate();
+
+			if (i != 0) {
+				return i;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return 0;
+	}
 }

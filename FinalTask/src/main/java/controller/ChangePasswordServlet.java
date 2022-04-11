@@ -60,14 +60,14 @@ public class ChangePasswordServlet extends HttpServlet {
 		String password = request.getParameter("password");
 		String confirmpassword = request.getParameter("confirmpassword");
 
-		PasswordMethods hash = new PasswordMethods();
+		PasswordMethods pass = new PasswordMethods();
 
-		String hashedPassword = hash.hashPassword(password);
+		String encryptedPassword = pass.encrypt(password);
 
 		UserDetailsBeanModel user = new UserDetailsBeanModel();
 
 		user.setEmail(email);
-		user.setPassword(hashedPassword);
+		user.setPassword(encryptedPassword);
 
 		ForgotPasswordInterface forgotPassword = new ForgotPasswordImpl();
 

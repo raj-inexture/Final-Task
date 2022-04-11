@@ -55,14 +55,14 @@ public class LoginServlet extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 
-		PasswordMethods hash = new PasswordMethods();
+		PasswordMethods pass = new PasswordMethods();
 
-		String hashedPassword = hash.hashPassword(password);
+		String encryptedPassword = pass.encrypt(password);
 
 		UserDetailsBeanModel user = new UserDetailsBeanModel();
 
 		user.setEmail(username);
-		user.setPassword(hashedPassword);
+		user.setPassword(encryptedPassword);
 
 		AdminUserLoginInterface login = new AdminUserLoginImpl();
 
@@ -114,7 +114,7 @@ public class LoginServlet extends HttpServlet {
 			session.setAttribute("email", user.getEmail());
 			session.setAttribute("logid", userlogs.getId());
 
-			RequestDispatcher rd = request.getRequestDispatcher("ViewUsersServlet");
+			RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
 			rd.forward(request, response);
 		} else {
 			response.sendRedirect("login.jsp");

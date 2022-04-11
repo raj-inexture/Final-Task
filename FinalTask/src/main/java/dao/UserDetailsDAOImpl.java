@@ -261,7 +261,7 @@ public class UserDetailsDAOImpl implements UserDetailsDAOInterface {
 		return null;
 	}
 
-	public int deleteUser(UserDetailsBeanModel user) {
+	public void deleteUser(UserDetailsBeanModel user) {
 
 		int i = 0;
 
@@ -271,6 +271,71 @@ public class UserDetailsDAOImpl implements UserDetailsDAOInterface {
 			PreparedStatement stmt = conn.prepareStatement("delete from userdetails where userid = ?");
 
 			stmt.setInt(1, user.getUserid());
+
+			i = stmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public List<UserDetailsBeanModel> viewAllUserProfileData(UserDetailsBeanModel user) {
+
+		try {
+			conn = DatabaseConnection.getInstance().getConnection();
+
+			List<UserDetailsBeanModel> userList = new LinkedList<UserDetailsBeanModel>();
+
+			PreparedStatement stmt = conn.prepareStatement("select * from userdetails where email = ?");
+
+			stmt.setString(1, user.getEmail());
+
+			ResultSet rs = stmt.executeQuery();
+
+			if (rs.next()) {
+				user.setUserid(rs.getInt(1));
+				user.setFirstname(rs.getString(2));
+				user.setLastname(rs.getString(3));
+				user.setEmail(rs.getString(4));
+				user.setGender(rs.getString(5));
+				user.setDob(rs.getString(6));
+				user.setPhone(rs.getString(7));
+				user.setPassword(rs.getString(8));
+				user.setProfilephoto(rs.getBinaryStream(9));
+				user.setUserrole(rs.getString(10));
+				user.setSecurityquestion(rs.getString(11));
+				user.setSecurityanswer(rs.getString(12));
+
+				userList.add(user);
+			}
+
+			return userList;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+
+	public int updateUser(UserDetailsBeanModel user) {
+
+		int i = 0;
+
+		try {
+			conn = DatabaseConnection.getInstance().getConnection();
+
+			PreparedStatement stmt = conn.prepareStatement(
+					"update userdetails set firstname = ?, lastname = ?, gender = ?, dob = ?, password = ?, securityquestion = ?, securityanswer = ? where email = ?");
+
+			stmt.setString(1, user.getFirstname());
+			stmt.setString(2, user.getLastname());
+			stmt.setString(3, user.getGender());
+			stmt.setString(4, user.getDob());
+			stmt.setString(5, user.getPassword());
+			stmt.setString(6, user.getSecurityquestion());
+			stmt.setString(7, user.getSecurityanswer());
+			stmt.setString(8, user.getEmail());
 
 			i = stmt.executeUpdate();
 

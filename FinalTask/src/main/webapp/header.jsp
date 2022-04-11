@@ -58,8 +58,7 @@
 
 				<div class="col-11 col-xl-2">
 					<h1 class="mb-0 site-logo">
-						<a href="index.html" class="text-white mb-0">
-							<!-- <img
+						<a href="index.html" class="text-white mb-0"> <!-- <img
 							src="resources/images/download.png"
 							style="border-radius: 50%; width: 125px;" alt=""> -->INEXTURE
 							SOLUTIONS LLP<!-- <p style="margin-top: 50px; color: black; text-decoration: none">INEXTURE SOLUTIONS LLP</p> -->
@@ -116,7 +115,7 @@
 	<script src="resources/js/main.js" type="text/javascript"></script>
 
 	<!-- Custom Script JavaScript -->
-	<script src="resources/js/script.js" type="text/javascript"></script>
+	<!-- <script src="resources/js/script.js" type="text/javascript"></script> -->
 
 </body>
 

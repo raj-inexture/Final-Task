@@ -62,7 +62,7 @@ public class RegistrationServlet extends HttpServlet {
 		String[] city = request.getParameterValues("city");
 		String[] states = request.getParameterValues("states");
 		String[] zipcode = request.getParameterValues("zipcode");
-		String[] technologies = request.getParameterValues("exist");
+		String[] technologies = request.getParameterValues("technology");
 		String password = request.getParameter("password");
 		String confirmpassword = request.getParameter("confirmpassword");
 		String securityquestion = request.getParameter("securityquestion");
@@ -76,9 +76,9 @@ public class RegistrationServlet extends HttpServlet {
 			inputStream = filePart.getInputStream();
 		}
 
-		PasswordMethods hash = new PasswordMethods();
+		PasswordMethods pass = new PasswordMethods();
 
-		String hashedPassword = hash.hashPassword(password);
+		String encryptedPassword = pass.encrypt(password);
 
 		UserDetailsBeanModel user = new UserDetailsBeanModel();
 
@@ -88,7 +88,7 @@ public class RegistrationServlet extends HttpServlet {
 		user.setGender(gender);
 		user.setDob(dob);
 		user.setPhone(phone);
-		user.setPassword(hashedPassword);
+		user.setPassword(encryptedPassword);
 		user.setSecurityquestion(securityquestion);
 		user.setSecurityanswer(securityanswer);
 		user.setProfilephoto(inputStream);
