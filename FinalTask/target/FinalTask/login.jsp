@@ -114,6 +114,8 @@
 
 	<!-- Custom Script Validation JavaScript -->
 	<script src="resources/js/validation.js"></script>
+	
+	<script src="resources/js/getuserdata.js"></script>
 
 	<!-- Custom Script JavaScript -->
 	<script src="resources/js/script.js"></script>

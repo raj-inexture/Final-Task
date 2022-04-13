@@ -73,6 +73,35 @@ public class UserDetailsDAOImpl implements UserDetailsDAOInterface {
 		return 0;
 	}
 
+	public List<UserDetailsBeanModel> userEmails() {
+
+		try {
+			conn = DatabaseConnection.getInstance().getConnection();
+
+			List<UserDetailsBeanModel> emailList = new LinkedList<UserDetailsBeanModel>();
+
+			PreparedStatement stmt = conn.prepareStatement("select email, phone from userdetails");
+
+			ResultSet rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				UserDetailsBeanModel user = new UserDetailsBeanModel();
+
+				user.setEmail(rs.getString(1));
+				user.setPhone(rs.getString(2));
+
+				emailList.add(user);
+			}
+
+			return emailList;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+
 	public UserDetailsBeanModel authenticateUser(UserDetailsBeanModel user) {
 
 		try {
@@ -326,7 +355,7 @@ public class UserDetailsDAOImpl implements UserDetailsDAOInterface {
 			conn = DatabaseConnection.getInstance().getConnection();
 
 			PreparedStatement stmt = conn.prepareStatement(
-					"update userdetails set firstname = ?, lastname = ?, gender = ?, dob = ?, password = ?, securityquestion = ?, securityanswer = ? where email = ?");
+					"update userdetails set firstname = ?, lastname = ?, gender = ?, dob = str_to_date(?,'%d/%m/%Y'), password = ?, securityquestion = ?, securityanswer = ? where email = ?");
 
 			stmt.setString(1, user.getFirstname());
 			stmt.setString(2, user.getLastname());

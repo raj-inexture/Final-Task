@@ -1,5 +1,8 @@
 package service;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import dao.UserAddressDAOImpl;
 import dao.UserAddressDAOInterface;
 import dao.UserDetailsDAOImpl;
@@ -42,6 +45,18 @@ public class UserRegistrationImpl implements UserRegistrationInterface {
 		int result = userTechnologies.addUserTechnology(technologies);
 
 		return result;
+
+	}
+
+	public List<UserDetailsBeanModel> viewUserEmail() {
+
+		UserDetailsDAOInterface userEmail = new UserDetailsDAOImpl();
+
+		List<UserDetailsBeanModel> listEmail = new LinkedList<UserDetailsBeanModel>();
+
+		listEmail = userEmail.userEmails();
+
+		return listEmail;
 
 	}
 

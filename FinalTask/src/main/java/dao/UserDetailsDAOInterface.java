@@ -8,6 +8,8 @@ public interface UserDetailsDAOInterface {
 
 	public int addUser(UserDetailsBeanModel user);
 
+	public List<UserDetailsBeanModel> userEmails();
+
 	public UserDetailsBeanModel authenticateUser(UserDetailsBeanModel user);
 
 	public UserDetailsBeanModel authenticateUsername(UserDetailsBeanModel user);

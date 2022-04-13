@@ -145,6 +145,20 @@
 						<div id="addresssection">
 							<div class="addressclass">
 								<fieldset>
+									<div class="form-row m-b-55" style="display: none">
+										<div class="name requiredsign">Address ID</div>
+										<div class="value">
+											<div class="row row-refine">
+												<div class="col-12">
+													<div class="input-group-desc">
+														<input class="input--style-5" type="text"
+															name="addressid" id="addressid"> <label
+															class="label--desc">Address ID</label>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
 									<div class="form-row m-b-55">
 										<div class="name requiredsign">Address</div>
 										<div class="value">
@@ -154,7 +168,6 @@
 														<input class="input--style-5" type="text"
 															name="addressline1" id="addresslineone"> <label
 															class="label--desc">Address Line 1</label>
-
 													</div>
 												</div>
 											</div>
@@ -464,6 +477,8 @@
 	<!-- Custom Date Script JavaScript -->
 	<script src="resources/js/date.js"></script>
 
+	<script src="resources/js/email-verification.js"></script>
+	
 	<script src="resources/js/getuserdata.js"></script>
 
 	<!-- Custom Script JavaScript -->

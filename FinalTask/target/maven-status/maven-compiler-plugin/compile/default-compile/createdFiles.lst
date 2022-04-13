@@ -36,5 +36,6 @@ dao\UserLogsDAOInterface.class
 controller\LogoutServlet.class
 model\UserLogsBeanModel.class
 service\ForgotPasswordInterface.class
+controller\EmailVerificationServlet.class
 model\UserDetailsBeanModel.class
 util\Validation.class

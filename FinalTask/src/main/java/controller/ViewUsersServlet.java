@@ -27,7 +27,6 @@ import util.PasswordMethods;
  */
 public class ViewUsersServlet extends HttpServlet {
 
-	static String email;
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -67,6 +66,7 @@ public class ViewUsersServlet extends HttpServlet {
 
 		if (user != null) {
 			request.setAttribute("user", user);
+			request.setAttribute("email", user.getEmail());
 
 			List<AddressBeanModel> listAddress = new LinkedList<AddressBeanModel>();
 
@@ -80,7 +80,7 @@ public class ViewUsersServlet extends HttpServlet {
 
 			request.setAttribute("technologylist", listTechnology);
 
-			RequestDispatcher rd = request.getRequestDispatcher("profileview.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("user.jsp");
 			rd.forward(request, response);
 		} else {
 			out.println("No Such User Found");

@@ -23,6 +23,7 @@ D:\Java Training\FinalTask\src\main\java\controller\ViewUserAddress.java
 D:\Java Training\FinalTask\src\main\java\util\DatabaseConnection.java
 D:\Java Training\FinalTask\src\main\java\dao\UserLogsDAOImpl.java
 D:\Java Training\FinalTask\src\main\java\model\TechnologiesBeanModel.java
+D:\Java Training\FinalTask\src\main\java\controller\EmailVerificationServlet.java
 D:\Java Training\FinalTask\src\main\java\model\UserLogsBeanModel.java
 D:\Java Training\FinalTask\src\main\java\controller\LogoutServlet.java
 D:\Java Training\FinalTask\src\main\java\controller\UserLogsServlet.java

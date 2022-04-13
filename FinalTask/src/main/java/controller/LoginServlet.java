@@ -114,7 +114,7 @@ public class LoginServlet extends HttpServlet {
 			session.setAttribute("email", user.getEmail());
 			session.setAttribute("logid", userlogs.getId());
 
-			RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("user.jsp");
 			rd.forward(request, response);
 		} else {
 			response.sendRedirect("login.jsp");

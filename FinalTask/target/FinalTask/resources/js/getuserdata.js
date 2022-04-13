@@ -1,10 +1,14 @@
 $(document).ready(function() {
+	
+	var input_email = $("#input_email").val();
+	
+	console.log(input_email);
 
 	$.ajax({
 		"url": "ViewUsersServlet",
 		"type": "POST",
 		"data": ({
-			email: 'shahraj.20.12.2000@gmail.com',
+			email: input_email,
 		}),
 		"dataType": "JSON",
 		success: function(response) {
@@ -37,7 +41,7 @@ $(document).ready(function() {
 		"url": "ViewUserAddress",
 		"type": "POST",
 		"data": ({
-			email: 'shahraj.20.12.2000@gmail.com',
+			email: input_email,
 		}),
 		"dataType": "JSON",
 		success: function(response) {
@@ -47,13 +51,17 @@ $(document).ready(function() {
 
 			$.each(response.addressData, function(key, value) {
 
+				/*$(':input[name=addressid]').val(response.addressData[key].id);*/
+
 				if (addressno == 1) {
+					$(':input[name=addressid]').val(response.addressData[key].id);
 					$(':input[name=addressline1]').val(response.addressData[key].addressline1);
 					$(':input[name=addressline2]').val(response.addressData[key].addressline2);
 					$(':input[name=city]').val(response.addressData[key].city);
 					$('#states').val(response.addressData[key].state).change();
 					$(':input[name=zipcode]').val(response.addressData[key].zipcode);
 				} else {
+					$(':input[name=addressid][id=addressid' + addressno + ']').val(response.addressData[key].id);
 					$(':input[name=addressline1][id=addresslineone' + addressno + ']').val(response.addressData[key].addressline1);
 					$(':input[name=addressline2][id=addresslinetwo' + addressno + ']').val(response.addressData[key].addressline2);
 					$(':input[name=city][id=city' + addressno + ']').val(response.addressData[key].city);
@@ -73,13 +81,11 @@ $(document).ready(function() {
 		}
 	});
 
-	debugger
-
 	$.ajax({
 		"url": "ViewUserTechnology",
 		"type": "POST",
 		"data": ({
-			email: 'shahraj.20.12.2000@gmail.com',
+			email: input_email,
 		}),
 		"dataType": "JSON",
 		success: function(response) {
@@ -114,8 +120,13 @@ $(document).ready(function() {
 			data: form.serialize(),
 			success: function(data) {
 				var result = data;
+				alert("User Profile Updated Successfully");
 				console.log(result);
+			},
+			error: function(response) {
+				console.log(response);
 			}
+
 		});
 
 		return false;

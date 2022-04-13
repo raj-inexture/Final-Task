@@ -10,6 +10,8 @@ public interface UserTechnologiesDAOInterface {
 
 	public List<TechnologiesBeanModel> viewUserTechnology(int userid);
 
-	public int deleteDuplicateTechnology();
+//	public int deleteDuplicateTechnology();
+
+	public int deleteUserTechnologies(TechnologiesBeanModel technology);
 
 }

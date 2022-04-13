@@ -10,6 +10,10 @@ public interface UserAddressDAOInterface {
 
 	public List<AddressBeanModel> viewUserAddress(int userid);
 
-	public int deleteDuplicateAddress();
+//	public int deleteDuplicateAddress();
+
+	public int updateUserAddress(AddressBeanModel address);
+
+	public int deleteUserAddress(AddressBeanModel address);
 
 }

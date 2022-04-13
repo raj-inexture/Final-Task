@@ -2,6 +2,8 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -60,6 +62,7 @@ public class UpdateUserServlet extends HttpServlet {
 		String gender = request.getParameter("genderradio");
 		String dob = request.getParameter("dob");
 		String phone = request.getParameter("phone");
+		String[] addressid = request.getParameterValues("addressid");
 		String[] addressline1 = request.getParameterValues("addressline1");
 		String[] addressline2 = request.getParameterValues("addressline2");
 		String[] city = request.getParameterValues("city");
@@ -97,45 +100,152 @@ public class UpdateUserServlet extends HttpServlet {
 
 		int result1 = userUpdate.updateUser(user);
 
-		int addressloop = 0;
+		List<AddressBeanModel> listAddress = new LinkedList<AddressBeanModel>();
+
+		listAddress = viewUsers.viewUserAddress(user.getUserid());
+
+		List<AddressBeanModel> newAddressList = new LinkedList<AddressBeanModel>();
+
+		int blankId = 1;
+
+		for (int loop = 0; loop < city.length; loop++) {
+			AddressBeanModel address = new AddressBeanModel();
+
+			if (addressid[loop].equals("")) {
+				address.setId(blankId);
+				blankId++;
+			} else {
+				address.setId(Integer.parseInt(addressid[loop]));
+			}
+
+			address.setUserid(user.getUserid());
+			address.setAddressline1(addressline1[loop]);
+			address.setAddressline2(addressline2[loop]);
+			address.setCity(city[loop]);
+			address.setState(states[loop]);
+			address.setZipcode(zipcode[loop]);
+
+			newAddressList.add(address);
+		}
+
+		for (int x = 0; x < newAddressList.size(); x++) {
+			out.println("New Address List" + newAddressList.get(x).getId());
+		}
+		for (int y = 0; y < listAddress.size(); y++) {
+			out.println("Old Address List" + listAddress.get(y).getId());
+		}
 
 		UserRegistrationInterface userRegistration = new UserRegistrationImpl();
 
-		while (addressloop < city.length) {
+		List<AddressBeanModel> deleteAddressList = new LinkedList<AddressBeanModel>(listAddress);
+		List<AddressBeanModel> updateAddressList = new LinkedList<AddressBeanModel>();
+		List<AddressBeanModel> insertAddressList = new LinkedList<AddressBeanModel>(newAddressList);
 
-			AddressBeanModel address = new AddressBeanModel();
+		for (int x = 0; x < deleteAddressList.size(); x++) {
+			for (int y = 0; y < newAddressList.size(); y++) {
+				if (deleteAddressList.get(x).getId() == newAddressList.get(y).getId()) {
+					deleteAddressList.remove(x);
+				}
+			}
+			out.println("Delete" + deleteAddressList.get(x).getId());
 
-			address.setUserid(user.getUserid());
-			address.setAddressline1(addressline1[addressloop]);
-			address.setAddressline2(addressline2[addressloop]);
-			address.setCity(city[addressloop]);
-			address.setState(states[addressloop]);
-			address.setZipcode(zipcode[addressloop]);
-
-			int addressResult = userRegistration.registerUserAddress(address);
-
-			addressloop++;
-
+			int result2 = userUpdate.deleteUserAddress(deleteAddressList.get(x));
 		}
 
-		int result2 = userUpdate.deleteDuplicateAddress();
+		for (int x = 0; x < listAddress.size(); x++) {
+			for (int y = 0; y < newAddressList.size(); y++) {
+				if (listAddress.get(x).getId() == newAddressList.get(y).getId()) {
+					out.println("Update" + listAddress.get(x).getId());
 
-		TechnologiesBeanModel technology = new TechnologiesBeanModel();
+					AddressBeanModel address = new AddressBeanModel();
 
-		int technologyloop = 0;
+					address.setId(listAddress.get(x).getId());
+					address.setAddressline1(newAddressList.get(x).getAddressline1());
+					address.setAddressline2(newAddressList.get(x).getAddressline2());
+					address.setCity(newAddressList.get(x).getCity());
+					address.setState(newAddressList.get(x).getState());
+					address.setZipcode(newAddressList.get(x).getZipcode());
 
-		while (technologyloop < technologies.length) {
+					updateAddressList.add(address);
 
-			technology.setUserid(user.getUserid());
-			technology.setTechnology(technologies[technologyloop]);
-
-			int technologiesresult = userRegistration.registerUserTechnologies(technology);
-
-			technologyloop++;
-
+					int result3 = userUpdate.updateUserAddress(updateAddressList.get(x));
+				}
+			}
 		}
 
-		int result3 = userUpdate.deleteDuplicateTechnology();
+		for (int x = 0; x < insertAddressList.size(); x++) {
+			for (int y = 0; y < updateAddressList.size(); y++) {
+				if (insertAddressList.get(x).getId() == updateAddressList.get(y).getId()) {
+					insertAddressList.remove(x);
+				}
+			}
+			out.println("Insert" + insertAddressList.get(x).getId());
+
+			int result4 = userRegistration.registerUserAddress(insertAddressList.get(x));
+		}
+
+		List<TechnologiesBeanModel> listTechnologies = new LinkedList<TechnologiesBeanModel>();
+
+		listTechnologies = viewUsers.viewUserTechnology(user.getUserid());
+
+		List<TechnologiesBeanModel> newTechnologiesList = new LinkedList<TechnologiesBeanModel>();
+
+		for (int loop = 0; loop < technologies.length; loop++) {
+			TechnologiesBeanModel techhnology = new TechnologiesBeanModel();
+
+			techhnology.setUserid(user.getUserid());
+			techhnology.setTechnology(technologies[loop]);
+
+			newTechnologiesList.add(techhnology);
+		}
+
+		for (int x = 0; x < newAddressList.size(); x++) {
+			out.println("New Technologies List" + newTechnologiesList.get(x).getId());
+		}
+		for (int y = 0; y < listAddress.size(); y++) {
+			out.println("Old Technologies List" + listTechnologies.get(y).getId());
+		}
+
+		List<TechnologiesBeanModel> deleteTechnologiesList = new LinkedList<TechnologiesBeanModel>(listTechnologies);
+		List<TechnologiesBeanModel> updateTechnologiesList = new LinkedList<TechnologiesBeanModel>();
+		List<TechnologiesBeanModel> insertTechnologiesList = new LinkedList<TechnologiesBeanModel>(newTechnologiesList);
+
+		for (int x = 0; x < deleteTechnologiesList.size(); x++) {
+			for (int y = 0; y < newTechnologiesList.size(); y++) {
+				if (deleteTechnologiesList.get(x).getId() == newTechnologiesList.get(y).getId()) {
+					deleteTechnologiesList.remove(x);
+				}
+			}
+			out.println("Delete" + deleteTechnologiesList.get(x).getId());
+
+			int result5 = userUpdate.deleteUserTechnologies(deleteTechnologiesList.get(x));
+		}
+
+		for (int x = 0; x < listTechnologies.size(); x++) {
+			for (int y = 0; y < newTechnologiesList.size(); y++) {
+				if (listTechnologies.get(x).getId() == newTechnologiesList.get(y).getId()) {
+					out.println("Update" + listTechnologies.get(x).getId());
+
+					TechnologiesBeanModel technology = new TechnologiesBeanModel();
+
+					technology.setUserid(user.getUserid());
+					technology.setTechnology(newTechnologiesList.get(x).getTechnology());
+
+					updateTechnologiesList.add(technology);
+				}
+			}
+		}
+
+		for (int x = 0; x < insertTechnologiesList.size(); x++) {
+			for (int y = 0; y < updateTechnologiesList.size(); y++) {
+				if (insertTechnologiesList.get(x).getId() == updateTechnologiesList.get(y).getId()) {
+					insertTechnologiesList.remove(x);
+				}
+			}
+			out.println("Insert" + insertTechnologiesList.get(x).getId());
+
+			int result6 = userRegistration.registerUserTechnologies(insertTechnologiesList.get(x));
+		}
 
 	}
 }
