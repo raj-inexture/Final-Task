@@ -29,10 +29,8 @@
 	integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns"
 	crossorigin="anonymous">
 
-<link rel="stylesheet" type="text/css"
-	href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
-
 <!-- Custom Style CSS -->
+<link href="resources/css/footerstyle.css" rel="stylesheet">
 <link href="resources/css/style.css" rel="stylesheet">
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -46,11 +44,13 @@
 
 <body>
 
-	<jsp:include page="header.jsp" />
-	
+	<jsp:include page="userheader.jsp" />
+
 	<input type="hidden" id="input_email" value="${email}">
-	
+
 	<jsp:include page="index.jsp" />
+
+	<jsp:include page="footer.jsp" />
 
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

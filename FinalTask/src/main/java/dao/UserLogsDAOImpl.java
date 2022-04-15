@@ -4,6 +4,8 @@ import java.io.FileWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.LinkedList;
+import java.util.List;
 
 import model.UserLogsBeanModel;
 import util.DatabaseConnection;
@@ -27,7 +29,10 @@ public class UserLogsDAOImpl implements UserLogsDAOInterface {
 			fw.append("END TIMESTAMP");
 			fw.append('\n');
 
-			PreparedStatement stmt = conn.prepareStatement("select userid, startstamp, endstamp from userlogs");
+			PreparedStatement stmt = conn.prepareStatement(
+					"select userlogs.userid, userlogs.startstamp, userlogs.endstamp from userlogs inner join userdetails on userdetails.userid = userlogs.userid where userdetails.userrole = ?");
+
+			stmt.setString(1, "User");
 
 			ResultSet rs = stmt.executeQuery();
 
@@ -46,6 +51,39 @@ public class UserLogsDAOImpl implements UserLogsDAOInterface {
 			e.printStackTrace();
 		}
 
+	}
+
+	public List<UserLogsBeanModel> viewAllUserLogs() {
+
+		try {
+			conn = DatabaseConnection.getInstance().getConnection();
+
+			List<UserLogsBeanModel> logsList = new LinkedList<UserLogsBeanModel>();
+
+			PreparedStatement stmt = conn.prepareStatement(
+					"select userlogs.userid, userlogs.startstamp, userlogs.endstamp from userlogs inner join userdetails on userdetails.userid = userlogs.userid where userdetails.userrole = ?");
+
+			stmt.setString(1, "User");
+
+			ResultSet rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				UserLogsBeanModel logs = new UserLogsBeanModel();
+
+				logs.setUserid(rs.getInt(1));
+				logs.setStartstamp(rs.getTimestamp(2));
+				logs.setEndstamp(rs.getTimestamp(3));
+
+				logsList.add(logs);
+			}
+
+			return logsList;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return null;
 	}
 
 	public int addStartStamp(UserLogsBeanModel userlogs) {

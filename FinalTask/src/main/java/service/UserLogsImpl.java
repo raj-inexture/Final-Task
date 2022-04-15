@@ -1,5 +1,8 @@
 package service;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import dao.UserLogsDAOImpl;
 import dao.UserLogsDAOInterface;
 import model.UserLogsBeanModel;
@@ -11,6 +14,18 @@ public class UserLogsImpl implements UserLogsInterface {
 		UserLogsDAOInterface userlogs = new UserLogsDAOImpl();
 
 		userlogs.userLogs();
+
+	}
+
+	public List<UserLogsBeanModel> viewAllUserLogs() {
+
+		UserLogsDAOInterface userLogs = new UserLogsDAOImpl();
+
+		List<UserLogsBeanModel> listLogs = new LinkedList<UserLogsBeanModel>();
+
+		listLogs = userLogs.viewAllUserLogs();
+
+		return listLogs;
 
 	}
 

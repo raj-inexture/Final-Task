@@ -132,7 +132,7 @@ public class UserAddressDAOImpl implements UserAddressDAOInterface {
 		return 0;
 	}
 
-	public int deleteUserAddress(AddressBeanModel address) {
+	public int deleteUserAddress(int id) {
 
 		int i = 0;
 
@@ -141,7 +141,7 @@ public class UserAddressDAOImpl implements UserAddressDAOInterface {
 
 			PreparedStatement stmt = conn.prepareStatement("delete from address where id = ?");
 
-			stmt.setInt(1, address.getId());
+			stmt.setInt(1, id);
 
 			i = stmt.executeUpdate();
 

@@ -52,11 +52,11 @@ public class UpdateUserImpl implements UpdateUserInterface {
 
 	}
 
-	public int deleteUserAddress(AddressBeanModel address) {
+	public int deleteUserAddress(int id) {
 
 		UserAddressDAOInterface userAddress = new UserAddressDAOImpl();
 
-		int result = userAddress.deleteUserAddress(address);
+		int result = userAddress.deleteUserAddress(id);
 
 		return result;
 

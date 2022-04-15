@@ -74,7 +74,7 @@
 							<div class="centeralign">
 								<div class="row row-refine">
 									<p class="register">
-										Login <a href="login.html" class="forgotpassword">Here</a>
+										Login <a href="login.jsp" class="forgotpassword">Here</a>
 									</p>
 								</div>
 							</div>
@@ -95,7 +95,7 @@
 	<script src="resources/js/validation.js"></script>
 
 	<!-- Custom Script JavaScript -->
-	<script src="resources/js/script.js"></script>
+	<!-- 	<script src="resources/js/script.js"></script> -->
 
 </body>
 

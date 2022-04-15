@@ -62,8 +62,48 @@ $('#addresssection').on('click', '.remove', function() {
 		$(this).parent().parent().empty();
 		return false;
 	});
-	
+
 	return false;
 });
 
 // ----------------------------------------------------------------------
+
+var sessionemail = $('#sessionemail').val();
+
+if (sessionemail == "") {
+	$('#userform').attr('action', 'RegistrationServlet');
+}
+
+if (sessionemail != "") {
+	$('#userform').attr('action', 'UpdateUserServlet');
+	$('.title').html('Edit Display Profile');
+	$('#finalbutton').html('Update');
+	$('#passwordrow').remove();
+	$('#confirmpasswordrow').remove();
+	$('#photorow').remove();
+	$('#securityquestionrow').remove();
+	$('#securityanswerrow').remove();
+	$('#termsrow').remove();
+
+	var form = $('#userform');
+	form.submit(function() {
+
+		$.ajax({
+			type: form.attr('method'),
+			url: form.attr('action'),
+			data: form.serialize(),
+			success: function(data) {
+				var result = data;
+				console.log(result);
+				window.location.reload();
+				alert("User Profile Updated Successfully");
+			},
+			error: function(response) {
+				console.log(response);
+			}
+
+		});
+
+		return false;
+	});
+}

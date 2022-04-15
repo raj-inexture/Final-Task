@@ -14,7 +14,7 @@ public interface UpdateUserInterface {
 
 	public int updateUserAddress(AddressBeanModel address);
 
-	public int deleteUserAddress(AddressBeanModel address);
+	public int deleteUserAddress(int id);
 
 	public int deleteUserTechnologies(TechnologiesBeanModel technology);
 

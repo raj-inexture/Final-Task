@@ -33,6 +33,7 @@
 	href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
 
 <!-- Custom Style CSS -->
+<link href="resources/css/footerstyle.css" rel="stylesheet">
 <link href="resources/css/style.css" rel="stylesheet">
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -46,21 +47,24 @@
 
 <body>
 
-	<jsp:include page="header.jsp" />
+	<jsp:include page="adminheader.jsp" />
 
-	<table id="table_id" class="display" style="width: 100%;">
+	<table id="table_id" class="display" style="width: 100%; padding: 10px">
 		<thead>
 			<tr>
 				<th>User ID</th>
 				<th>First Name</th>
 				<th>Last Name</th>
 				<th>Email ID</th>
+				<th>DOB</th>
 				<th>Phone</th>
 				<th></th>
 			</tr>
 		</thead>
 		<tbody></tbody>
 	</table>
+
+	<jsp:include page="footer.jsp" />
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script

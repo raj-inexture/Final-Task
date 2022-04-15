@@ -14,6 +14,6 @@ public interface UserAddressDAOInterface {
 
 	public int updateUserAddress(AddressBeanModel address);
 
-	public int deleteUserAddress(AddressBeanModel address);
+	public int deleteUserAddress(int id);
 
 }

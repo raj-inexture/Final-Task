@@ -1,0 +1,19 @@
+.footer-page {
+	background-color: #ffffff;
+	padding: 20px;
+}
+
+.foot {
+	border-top: #ff4b5a 2px solid;
+	margin-top: 20px;
+	text-align: center;
+}
+
+.foot-text p {
+	color: #ff4b5a;
+	font-family: 'Poppins', sans-serif;
+	font-size: 15px;
+	font-weight: 600;
+	margin: 0px;
+	margin-top: 20px;
+}

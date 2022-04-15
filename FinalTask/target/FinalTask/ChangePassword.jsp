@@ -118,7 +118,7 @@
 	<script src="resources/js/validation.js"></script>
 
 	<!-- Custom Script JavaScript -->
-	<script src="resources/js/script.js"></script>
+	<!-- <script src="resources/js/script.js"></script> -->
 
 </body>
 

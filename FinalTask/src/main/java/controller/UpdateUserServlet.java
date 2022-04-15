@@ -2,6 +2,8 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -19,7 +21,6 @@ import service.UserRegistrationImpl;
 import service.UserRegistrationInterface;
 import service.ViewUsersImpl;
 import service.ViewUsersInterface;
-import util.PasswordMethods;
 
 /**
  * Servlet implementation class UpdateUserServlet
@@ -69,10 +70,10 @@ public class UpdateUserServlet extends HttpServlet {
 		String[] states = request.getParameterValues("states");
 		String[] zipcode = request.getParameterValues("zipcode");
 		String[] technologies = request.getParameterValues("technology");
-		String password = request.getParameter("password");
-		String confirmpassword = request.getParameter("confirmpassword");
-		String securityquestion = request.getParameter("securityquestion");
-		String securityanswer = request.getParameter("securityanswer");
+//		String password = request.getParameter("password");
+//		String confirmpassword = request.getParameter("confirmpassword");
+//		String securityquestion = request.getParameter("securityquestion");
+//		String securityanswer = request.getParameter("securityanswer");
 
 		UserDetailsBeanModel user = new UserDetailsBeanModel();
 
@@ -82,9 +83,9 @@ public class UpdateUserServlet extends HttpServlet {
 
 		user = viewUsers.viewUserDetails(user);
 
-		PasswordMethods pass = new PasswordMethods();
-
-		String encryptedPassword = pass.encrypt(password);
+//		PasswordMethods pass = new PasswordMethods();
+//
+//		String encryptedPassword = pass.encrypt(password);
 
 		user.setFirstname(firstname);
 		user.setLastname(lastname);
@@ -92,9 +93,9 @@ public class UpdateUserServlet extends HttpServlet {
 		user.setGender(gender);
 		user.setDob(dob);
 		user.setPhone(phone);
-		user.setPassword(encryptedPassword);
-		user.setSecurityquestion(securityquestion);
-		user.setSecurityanswer(securityanswer);
+//		user.setPassword(encryptedPassword);
+//		user.setSecurityquestion(securityquestion);
+//		user.setSecurityanswer(securityanswer);
 
 		UpdateUserInterface userUpdate = new UpdateUserImpl();
 
@@ -128,60 +129,64 @@ public class UpdateUserServlet extends HttpServlet {
 			newAddressList.add(address);
 		}
 
+		UserRegistrationInterface userRegistration = new UserRegistrationImpl();
+
+		List l1 = new ArrayList();
+		List l2 = new ArrayList();
+
 		for (int x = 0; x < newAddressList.size(); x++) {
 			out.println("New Address List" + newAddressList.get(x).getId());
+			l1.add(newAddressList.get(x).getId());
 		}
 		for (int y = 0; y < listAddress.size(); y++) {
 			out.println("Old Address List" + listAddress.get(y).getId());
+			l2.add(listAddress.get(y).getId());
 		}
 
-		UserRegistrationInterface userRegistration = new UserRegistrationImpl();
+		List update = new ArrayList(l2);
+		update.retainAll(l1);
 
-		List<AddressBeanModel> deleteAddressList = new LinkedList<AddressBeanModel>(listAddress);
-		List<AddressBeanModel> updateAddressList = new LinkedList<AddressBeanModel>();
-		List<AddressBeanModel> insertAddressList = new LinkedList<AddressBeanModel>(newAddressList);
-
-		for (int x = 0; x < deleteAddressList.size(); x++) {
-			for (int y = 0; y < newAddressList.size(); y++) {
-				if (deleteAddressList.get(x).getId() == newAddressList.get(y).getId()) {
-					deleteAddressList.remove(x);
-				}
-			}
-			out.println("Delete" + deleteAddressList.get(x).getId());
-
-			int result2 = userUpdate.deleteUserAddress(deleteAddressList.get(x));
-		}
-
-		for (int x = 0; x < listAddress.size(); x++) {
-			for (int y = 0; y < newAddressList.size(); y++) {
-				if (listAddress.get(x).getId() == newAddressList.get(y).getId()) {
-					out.println("Update" + listAddress.get(x).getId());
-
+		Iterator iterator2 = update.iterator();
+		while (iterator2.hasNext()) {
+//			out.println("Update" + iterator2.next());
+			int tempid = (int) iterator2.next();
+			for (int loop = 0; loop < newAddressList.size(); loop++) {
+				if (tempid == (int) newAddressList.get(loop).getId()) {
 					AddressBeanModel address = new AddressBeanModel();
 
-					address.setId(listAddress.get(x).getId());
-					address.setAddressline1(newAddressList.get(x).getAddressline1());
-					address.setAddressline2(newAddressList.get(x).getAddressline2());
-					address.setCity(newAddressList.get(x).getCity());
-					address.setState(newAddressList.get(x).getState());
-					address.setZipcode(newAddressList.get(x).getZipcode());
+					address.setId(newAddressList.get(loop).getId());
+					address.setAddressline1(newAddressList.get(loop).getAddressline1());
+					address.setAddressline2(newAddressList.get(loop).getAddressline2());
+					address.setCity(newAddressList.get(loop).getCity());
+					address.setState(newAddressList.get(loop).getState());
+					address.setZipcode(newAddressList.get(loop).getZipcode());
 
-					updateAddressList.add(address);
-
-					int result3 = userUpdate.updateUserAddress(updateAddressList.get(x));
+					int result3 = userUpdate.updateUserAddress(address);
 				}
 			}
 		}
 
-		for (int x = 0; x < insertAddressList.size(); x++) {
-			for (int y = 0; y < updateAddressList.size(); y++) {
-				if (insertAddressList.get(x).getId() == updateAddressList.get(y).getId()) {
-					insertAddressList.remove(x);
+		List delete = new ArrayList(l2);
+		delete.removeAll(l1);
+
+		Iterator<Integer> iterator3 = delete.iterator();
+		while (iterator3.hasNext()) {
+//			out.println("Delete" + iterator3.next());
+			int result2 = userUpdate.deleteUserAddress(iterator3.next());
+		}
+
+		List insert = new ArrayList(l1);
+		insert.removeAll(l2);
+
+		Iterator iterator1 = insert.iterator();
+		while (iterator1.hasNext()) {
+//			out.println("Insert" + iterator1.next());
+			int tempid = (int) iterator1.next();
+			for (int loop = 0; loop < newAddressList.size(); loop++) {
+				if (tempid == (int) newAddressList.get(loop).getId()) {
+					int result4 = userRegistration.registerUserAddress(newAddressList.get(loop));
 				}
 			}
-			out.println("Insert" + insertAddressList.get(x).getId());
-
-			int result4 = userRegistration.registerUserAddress(insertAddressList.get(x));
 		}
 
 		List<TechnologiesBeanModel> listTechnologies = new LinkedList<TechnologiesBeanModel>();
@@ -199,12 +204,12 @@ public class UpdateUserServlet extends HttpServlet {
 			newTechnologiesList.add(techhnology);
 		}
 
-		for (int x = 0; x < newAddressList.size(); x++) {
-			out.println("New Technologies List" + newTechnologiesList.get(x).getId());
-		}
-		for (int y = 0; y < listAddress.size(); y++) {
-			out.println("Old Technologies List" + listTechnologies.get(y).getId());
-		}
+//		for (int x = 0; x < newAddressList.size(); x++) {
+//			out.println("New Technologies List" + newTechnologiesList.get(x).getId());
+//		}
+//		for (int y = 0; y < listAddress.size(); y++) {
+//			out.println("Old Technologies List" + listTechnologies.get(y).getId());
+//		}
 
 		List<TechnologiesBeanModel> deleteTechnologiesList = new LinkedList<TechnologiesBeanModel>(listTechnologies);
 		List<TechnologiesBeanModel> updateTechnologiesList = new LinkedList<TechnologiesBeanModel>();
@@ -216,7 +221,7 @@ public class UpdateUserServlet extends HttpServlet {
 					deleteTechnologiesList.remove(x);
 				}
 			}
-			out.println("Delete" + deleteTechnologiesList.get(x).getId());
+//			out.println("Delete" + deleteTechnologiesList.get(x).getId());
 
 			int result5 = userUpdate.deleteUserTechnologies(deleteTechnologiesList.get(x));
 		}
@@ -224,7 +229,7 @@ public class UpdateUserServlet extends HttpServlet {
 		for (int x = 0; x < listTechnologies.size(); x++) {
 			for (int y = 0; y < newTechnologiesList.size(); y++) {
 				if (listTechnologies.get(x).getId() == newTechnologiesList.get(y).getId()) {
-					out.println("Update" + listTechnologies.get(x).getId());
+//					out.println("Update" + listTechnologies.get(x).getId());
 
 					TechnologiesBeanModel technology = new TechnologiesBeanModel();
 
@@ -242,7 +247,7 @@ public class UpdateUserServlet extends HttpServlet {
 					insertTechnologiesList.remove(x);
 				}
 			}
-			out.println("Insert" + insertTechnologiesList.get(x).getId());
+//			out.println("Insert" + insertTechnologiesList.get(x).getId());
 
 			int result6 = userRegistration.registerUserTechnologies(insertTechnologiesList.get(x));
 		}

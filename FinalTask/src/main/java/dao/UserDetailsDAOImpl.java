@@ -234,12 +234,17 @@ public class UserDetailsDAOImpl implements UserDetailsDAOInterface {
 			ResultSet rs = stmt.executeQuery();
 
 			if (rs.next()) {
+
+				String date[] = rs.getString(6).split("-", 3);
+
+				String dob = date[2] + "/" + date[1] + "/" + date[0];
+
 				user.setUserid(rs.getInt(1));
 				user.setFirstname(rs.getString(2));
 				user.setLastname(rs.getString(3));
 				user.setEmail(rs.getString(4));
 				user.setGender(rs.getString(5));
-				user.setDob(rs.getString(6));
+				user.setDob(dob);
 				user.setPhone(rs.getString(7));
 				user.setPassword(rs.getString(8));
 				user.setProfilephoto(rs.getBinaryStream(9));
@@ -265,18 +270,23 @@ public class UserDetailsDAOImpl implements UserDetailsDAOInterface {
 			List<UserDetailsBeanModel> userList = new LinkedList<UserDetailsBeanModel>();
 
 			PreparedStatement stmt = conn.prepareStatement(
-					"select userid, firstname, lastname, email, phone from userdetails where userrole = 'User'");
+					"select userid, firstname, lastname, email, dob, phone from userdetails where userrole = 'User'");
 
 			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
 				UserDetailsBeanModel user = new UserDetailsBeanModel();
 
+				String date[] = rs.getString(5).split("-", 3);
+
+				String dob = date[2] + "/" + date[1] + "/" + date[0];
+
 				user.setUserid(rs.getInt(1));
 				user.setFirstname(rs.getString(2));
 				user.setLastname(rs.getString(3));
 				user.setEmail(rs.getString(4));
-				user.setPhone(rs.getString(5));
+				user.setDob(dob);
+				user.setPhone(rs.getString(6));
 
 				userList.add(user);
 			}
@@ -322,12 +332,17 @@ public class UserDetailsDAOImpl implements UserDetailsDAOInterface {
 			ResultSet rs = stmt.executeQuery();
 
 			if (rs.next()) {
+
+				String date[] = rs.getString(6).split("-", 3);
+
+				String dob = date[2] + "/" + date[1] + "/" + date[0];
+
 				user.setUserid(rs.getInt(1));
 				user.setFirstname(rs.getString(2));
 				user.setLastname(rs.getString(3));
 				user.setEmail(rs.getString(4));
 				user.setGender(rs.getString(5));
-				user.setDob(rs.getString(6));
+				user.setDob(dob);
 				user.setPhone(rs.getString(7));
 				user.setPassword(rs.getString(8));
 				user.setProfilephoto(rs.getBinaryStream(9));
@@ -355,16 +370,16 @@ public class UserDetailsDAOImpl implements UserDetailsDAOInterface {
 			conn = DatabaseConnection.getInstance().getConnection();
 
 			PreparedStatement stmt = conn.prepareStatement(
-					"update userdetails set firstname = ?, lastname = ?, gender = ?, dob = str_to_date(?,'%d/%m/%Y'), password = ?, securityquestion = ?, securityanswer = ? where email = ?");
+					"update userdetails set firstname = ?, lastname = ?, gender = ?, dob = str_to_date(?,'%d/%m/%Y') where email = ?");
 
 			stmt.setString(1, user.getFirstname());
 			stmt.setString(2, user.getLastname());
 			stmt.setString(3, user.getGender());
 			stmt.setString(4, user.getDob());
-			stmt.setString(5, user.getPassword());
-			stmt.setString(6, user.getSecurityquestion());
-			stmt.setString(7, user.getSecurityanswer());
-			stmt.setString(8, user.getEmail());
+//			stmt.setString(5, user.getPassword());
+//			stmt.setString(6, user.getSecurityquestion());
+//			stmt.setString(7, user.getSecurityanswer());
+			stmt.setString(5, user.getEmail());
 
 			i = stmt.executeUpdate();
 

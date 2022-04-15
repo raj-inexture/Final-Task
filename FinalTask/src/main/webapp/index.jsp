@@ -45,6 +45,8 @@
 
 <body>
 
+	<input type="hidden" value="${email}" id="sessionemail">
+
 	<div class="page-wrapper bg-gra-03 p-t-45 p-b-20">
 		<div class="wrapper wrapper--w790">
 			<div class="card card-5">
@@ -52,7 +54,7 @@
 					<h2 class="title">User Registration Form</h2>
 				</div>
 				<div class="card-body">
-					<form method="POST" action="UpdateUserServlet"
+					<form method="POST" action="RegistrationServlet"
 						enctype="multipart/form-data" id="userform">
 						<div class="form-row m-b-55">
 							<div class="name requiredsign">Name</div>
@@ -151,9 +153,9 @@
 											<div class="row row-refine">
 												<div class="col-12">
 													<div class="input-group-desc">
-														<input class="input--style-5" type="text"
-															name="addressid" id="addressid"> <label
-															class="label--desc">Address ID</label>
+														<input class="input--style-5" type="text" name="addressid"
+															id="addressid"> <label class="label--desc">Address
+															ID</label>
 													</div>
 												</div>
 											</div>
@@ -345,7 +347,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="form-row">
+						<div class="form-row" id="passwordrow">
 							<div class="name requiredsign">Password</div>
 							<div class="value">
 								<div class="row row-refine">
@@ -358,7 +360,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="form-row">
+						<div class="form-row" id="confirmpasswordrow">
 							<div class="name requiredsign">Confirm Password</div>
 							<div class="value">
 								<div class="row row-refine">
@@ -371,7 +373,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="form-row">
+						<div class="form-row" id="securityquestionrow">
 							<div class="name requiredsign">Security Question</div>
 							<div class="value">
 								<div class="input-group">
@@ -397,7 +399,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="form-row">
+						<div class="form-row" id="securityanswerrow">
 							<div class="name"></div>
 							<div class="value">
 								<div class="row row-refine">
@@ -411,20 +413,21 @@
 								</div>
 							</div>
 						</div>
-						<div class="form-row m-b-55">
+						<div class="form-row m-b-55" id="photorow">
 							<div class="name">Profile Photo</div>
 							<div class="value">
 								<div class="row row-refine">
 									<div class="col-9">
 										<div class="input-group-desc">
-											<input class="input--style-5" type="file" name="profilephoto">
-											<label class="label--desc">Types of Images Allowed</label>
+											<input class="input--style-5" type="file" name="profilephoto"
+												id="profilephoto">
+											<!-- <img src="" id="previewimage" style="max-height: 120px; max-width: 80px"> -->
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-						<div class="form-row">
+						<div class="form-row" id="termsrow">
 							<div class="name"></div>
 							<div class="value">
 								<div class="input-group">
@@ -439,7 +442,8 @@
 							<div class="name"></div>
 							<div class="value">
 								<div class="input-group">
-									<button class="btn btn--radius-2 btn--red" type="submit">Register</button>
+									<button class="btn btn--radius-2 btn--red" type="submit"
+										id="finalbutton">Register</button>
 								</div>
 							</div>
 						</div>
@@ -478,11 +482,27 @@
 	<script src="resources/js/date.js"></script>
 
 	<script src="resources/js/email-verification.js"></script>
-	
+
 	<script src="resources/js/getuserdata.js"></script>
 
 	<!-- Custom Script JavaScript -->
 	<script src="resources/js/script.js"></script>
+
+	<!-- 	<script type="text/javascript">
+	function display(input) {
+		   if (input.files && input.files[0]) {
+		      var reader = new FileReader();
+		      reader.onload = function(event) {
+		         $('#previewimage').attr('src', event.target.result);
+		      }
+		      reader.readAsDataURL(input.files[0]);
+		   }
+		}
+
+		$("#profilephoto").change(function() {
+		   display(this);
+		});
+	</script> -->
 
 </body>
 
