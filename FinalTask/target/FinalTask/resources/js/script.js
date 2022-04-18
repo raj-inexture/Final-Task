@@ -14,7 +14,7 @@ if (sectionsCount == 1) {
 }
 
 // Add Address
-$('body').on('click', '.addsection', function() {
+$('body').on('click', '.addsection', function () {
 
 	sectionsCount++;
 
@@ -26,18 +26,18 @@ $('body').on('click', '.addsection', function() {
 		$('.remove').parent().removeClass('toggleButton');
 	}
 
-	var section = template.clone().find(':input[type="text"], select[name="states"]').val("").each(function() {
+	var section = template.clone().find(':input[type="text"], select[name="states"]').val("").each(function () {
 
-		//set id to store the updated section number
-		var newId = this.id + sectionsCount;
+			//set id to store the updated section number
+			var newId = this.id + sectionsCount;
 
-		//update for label
-		$(this).prev().attr('for', newId);
+			//update for label
+			$(this).prev().attr('for', newId);
 
-		//update id
-		this.id = newId;
+			//update id
+			this.id = newId;
 
-	}).end()
+		}).end()
 
 		//inject new section
 		.appendTo('#addresssection');
@@ -45,7 +45,7 @@ $('body').on('click', '.addsection', function() {
 });
 
 //remove section
-$('#addresssection').on('click', '.remove', function() {
+$('#addresssection').on('click', '.remove', function () {
 
 	//decrement
 	sectionsCount--;
@@ -57,7 +57,7 @@ $('#addresssection').on('click', '.remove', function() {
 	}
 
 	//fade out section
-	$(this).parent().fadeOut(300, function() {
+	$(this).parent().fadeOut(300, function () {
 		//remove parent element (main section)
 		$(this).parent().parent().empty();
 		return false;
@@ -86,19 +86,19 @@ if (sessionemail != "") {
 	$('#termsrow').remove();
 
 	var form = $('#userform');
-	form.submit(function() {
+	form.submit(function () {
 
 		$.ajax({
 			type: form.attr('method'),
 			url: form.attr('action'),
 			data: form.serialize(),
-			success: function(data) {
+			success: function (data) {
 				var result = data;
 				console.log(result);
 				window.location.reload();
 				alert("User Profile Updated Successfully");
 			},
-			error: function(response) {
+			error: function (response) {
 				console.log(response);
 			}
 

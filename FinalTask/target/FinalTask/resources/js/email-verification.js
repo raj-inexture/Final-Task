@@ -1,5 +1,5 @@
 $("#email").blur(function () {
-	
+
     $.ajax({
         "url": "EmailVerificationServlet",
         "type": "POST",
@@ -25,7 +25,7 @@ $("#email").blur(function () {
 })
 
 $("#phone").blur(function () {
-	
+
     $.ajax({
         "url": "EmailVerificationServlet",
         "type": "POST",
@@ -35,7 +35,7 @@ $("#phone").blur(function () {
             var input_phone = $("#phone").val();
 
             $.each(response.emailData, function (key, value) {
-                
+
                 if (input_phone == response.emailData[key].phone) {
                     alert("Phone Number has Already Been Taken\r\nEnter Another Phone Number");
                     return false;

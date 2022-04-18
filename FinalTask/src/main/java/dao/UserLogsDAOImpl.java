@@ -1,6 +1,5 @@
 package dao;
 
-import java.io.FileWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,45 +12,6 @@ import util.DatabaseConnection;
 public class UserLogsDAOImpl implements UserLogsDAOInterface {
 
 	static Connection conn;
-
-	public void userLogs() {
-
-		try {
-			conn = DatabaseConnection.getInstance().getConnection();
-
-			String filename = "D:\\Java Training\\FinalTask\\userlogs.csv";
-
-			FileWriter fw = new FileWriter(filename);
-			fw.append("USER ID");
-			fw.append(',');
-			fw.append("START TIMESTAMP");
-			fw.append(',');
-			fw.append("END TIMESTAMP");
-			fw.append('\n');
-
-			PreparedStatement stmt = conn.prepareStatement(
-					"select userlogs.userid, userlogs.startstamp, userlogs.endstamp from userlogs inner join userdetails on userdetails.userid = userlogs.userid where userdetails.userrole = ?");
-
-			stmt.setString(1, "User");
-
-			ResultSet rs = stmt.executeQuery();
-
-			while (rs.next()) {
-				fw.append(rs.getString(1));
-				fw.append(',');
-				fw.append(rs.getString(2));
-				fw.append(',');
-				fw.append(rs.getString(3));
-				fw.append('\n');
-			}
-			fw.flush();
-			fw.close();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-	}
 
 	public List<UserLogsBeanModel> viewAllUserLogs() {
 
@@ -158,6 +118,41 @@ public class UserLogsDAOImpl implements UserLogsDAOInterface {
 		}
 
 		return 0;
+	}
+
+	public List<UserLogsBeanModel> fetchUserLogs(String startdate, String enddate, String starttime, String endtime) {
+
+		try {
+			conn = DatabaseConnection.getInstance().getConnection();
+
+			List<UserLogsBeanModel> logsList = new LinkedList<UserLogsBeanModel>();
+
+			PreparedStatement stmt = conn.prepareStatement(
+					"select userlogs.userid, userlogs.startstamp, userlogs.endstamp from userlogs inner join userdetails on userdetails.userid = userlogs.userid where userdetails.userrole = ? and (startstamp >= ? and endstamp <= ?)");
+
+			stmt.setString(1, "User");
+			stmt.setString(2, startdate + " " + starttime);
+			stmt.setString(3, enddate + " " + endtime);
+
+			ResultSet rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				UserLogsBeanModel logs = new UserLogsBeanModel();
+
+				logs.setUserid(rs.getInt(1));
+				logs.setStartstamp(rs.getTimestamp(2));
+				logs.setEndstamp(rs.getTimestamp(3));
+
+				logsList.add(logs);
+			}
+
+			return logsList;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return null;
 	}
 
 }

@@ -13,6 +13,7 @@ dao\UserTechnologiesDAOInterface.class
 dao\UserDetailsDAOInterface.class
 controller\ForgotPasswordUsernameServlet.class
 controller\UpdateUserServlet.class
+controller\FetchUserLogsServlet.class
 dao\UserLogsDAOImpl.class
 service\UserLogsInterface.class
 service\UserRegistrationInterface.class

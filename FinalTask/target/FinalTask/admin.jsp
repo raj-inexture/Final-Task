@@ -74,7 +74,8 @@
 	<script src="resources/library/bootstrap/js/bootstrap.min.js"></script>
 
 	<script type="text/javascript" charset="utf8"
-		src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+		src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js">
+	</script>
 
 	<!-- Custom Script JavaScript -->
 	<script src="resources/js/datatable.js"></script>

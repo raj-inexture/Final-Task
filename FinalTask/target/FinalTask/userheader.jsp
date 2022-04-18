@@ -63,7 +63,7 @@
 						<a href="index.html" class="text-white mb-0"> <!-- <img
 							src="resources/images/download.png"
 							style="border-radius: 50%; width: 125px;" alt=""> -->INEXTURE
-							SOLUTIONS LLP<!-- <p style="margin-top: 50px; color: black; text-decoration: none">INEXTURE SOLUTIONS LLP</p> -->
+							SOLUTIONS LLP <!-- <p style="margin-top: 50px; color: black; text-decoration: none">INEXTURE SOLUTIONS LLP</p> -->
 						</a>
 					</h1>
 				</div>

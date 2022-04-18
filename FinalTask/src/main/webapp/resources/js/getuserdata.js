@@ -1,5 +1,5 @@
-$(document).ready(function() {
-	
+$(document).ready(function () {
+
 	var input_email = $("#input_email").val();
 
 	$.ajax({
@@ -9,7 +9,7 @@ $(document).ready(function() {
 			email: input_email,
 		}),
 		"dataType": "JSON",
-		success: function(response) {
+		success: function (response) {
 			$('#firstname').val(response.data[0].firstname);
 			$('#lastname').val(response.data[0].lastname);
 			$('#email').val(response.data[0].email);
@@ -30,7 +30,7 @@ $(document).ready(function() {
 			}
 			console.log(response);
 		},
-		error: function(response) {
+		error: function (response) {
 			console.log(response);
 		}
 	});
@@ -42,12 +42,12 @@ $(document).ready(function() {
 			email: input_email,
 		}),
 		"dataType": "JSON",
-		success: function(response) {
+		success: function (response) {
 			var count = response.addressData.length;
 
 			var addressno = 1;
 
-			$.each(response.addressData, function(key, value) {
+			$.each(response.addressData, function (key, value) {
 
 				/*$(':input[name=addressid]').val(response.addressData[key].id);*/
 
@@ -74,7 +74,7 @@ $(document).ready(function() {
 			});
 			console.log(response);
 		},
-		error: function(response) {
+		error: function (response) {
 			console.log(response);
 		}
 	});
@@ -86,16 +86,16 @@ $(document).ready(function() {
 			email: input_email,
 		}),
 		"dataType": "JSON",
-		success: function(response) {
+		success: function (response) {
 			var count = $(response.technologies.length);
 
 			var values = [];
 
-			$.each($("input[name=technology]"), function() {
+			$.each($("input[name=technology]"), function () {
 				values.push($(this).val());
 			});
 
-			$.each(response.technologies, function(key, value) {
+			$.each(response.technologies, function (key, value) {
 				for (let loop = 0; loop < values.length; loop++) {
 					if (response.technologies[key].technology == values[loop]) {
 						$('input[name=technology][value="' + response.technologies[key].technology + '"]').prop('checked', true);
@@ -104,7 +104,7 @@ $(document).ready(function() {
 			});
 			console.log(response);
 		},
-		error: function(response) {
+		error: function (response) {
 			console.log(response);
 		}
 	});

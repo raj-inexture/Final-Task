@@ -9,14 +9,6 @@ import model.UserLogsBeanModel;
 
 public class UserLogsImpl implements UserLogsInterface {
 
-	public void userLogs() {
-
-		UserLogsDAOInterface userlogs = new UserLogsDAOImpl();
-
-		userlogs.userLogs();
-
-	}
-
 	public List<UserLogsBeanModel> viewAllUserLogs() {
 
 		UserLogsDAOInterface userLogs = new UserLogsDAOImpl();
@@ -56,6 +48,18 @@ public class UserLogsImpl implements UserLogsInterface {
 		int result = userLogs.addEndStamp(userlogs);
 
 		return result;
+
+	}
+
+	public List<UserLogsBeanModel> fetchUserLogs(String startdate, String enddate, String starttime, String endtime) {
+
+		UserLogsDAOInterface userLogs = new UserLogsDAOImpl();
+
+		List<UserLogsBeanModel> listLogs = new LinkedList<UserLogsBeanModel>();
+
+		listLogs = userLogs.fetchUserLogs(startdate, enddate, starttime, endtime);
+
+		return listLogs;
 
 	}
 

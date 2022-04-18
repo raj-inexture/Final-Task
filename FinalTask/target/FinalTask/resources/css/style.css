@@ -590,12 +590,12 @@ input {
 }
 
 .radio-container input:checked ~.checkmark, .checkbox-container input:checked
-	 ~.checkspan {
+	~.checkspan {
 	background-color: #e5e5e5;
 }
 
 .radio-container input:checked ~.checkmark:after, .checkbox-container input:checked
-	 ~.checkspan:after {
+	~.checkspan:after {
 	display: block;
 }
 

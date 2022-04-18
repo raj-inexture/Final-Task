@@ -38,6 +38,8 @@
 
 <!-- Custom Style CSS -->
 <link href="resources/css/footerstyle.css" rel="stylesheet">
+<link href="resources/css/daterangepicker.css" rel="stylesheet"
+	media="all">
 <link href="resources/css/style.css" rel="stylesheet">
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -65,21 +67,67 @@
 		<tbody></tbody>
 	</table>
 
-	<label>Start Date</label>
-	<input class="input--style-5 js-datepicker" type="date"
-		name="startdate" id="startdate">
-
-	<label>End Date</label>
-	<input class="input--style-5 js-datepicker" type="date" name="enddate"
-		id="enddate">
-
-	<label>Start Time</label>
-	<input class="input--style-5 js-datepicker" type="date"
-		name="starttime" id="starttime">
-
-	<label>End Time</label>
-	<input class="input--style-5 js-datepicker" type="date" name="endtime"
-		id="endtime">
+	<div class="page-wrapper bg-gra-03 p-t-45 p-b-20">
+		<div class="wrapper wrapper--w790">
+			<div class="card card-5">
+				<div class="card-body">
+					<form id="userlogstable">
+						<div class="form-row m-b-55">
+							<div class="name requiredsign">Date Range</div>
+							<div class="value">
+								<div class="row row-space">
+									<div class="col-2">
+										<div class="input-group-desc">
+											<input class="input--style-5 js-datepicker" type="text"
+												name="startdate" id="startdate"> <label
+												class="label--desc">Start Date</label>
+										</div>
+									</div>
+									<div class="col-2">
+										<div class="input-group-desc">
+											<input class="input--style-5 js-datepicker" type="text"
+												name="enddate" id="enddate"> <label
+												class="label--desc">End Date</label>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="form-row m-b-55">
+							<div class="name">Time</div>
+							<div class="value">
+								<div class="row row-space">
+									<div class="col-2">
+										<div class="input-group-desc">
+											<input class="input--style-5" type="text" name="starttime"
+												id="starttime"> <label class="label--desc">Start
+												Time</label>
+										</div>
+									</div>
+									<div class="col-2">
+										<div class="input-group-desc">
+											<input class="input--style-5" type="text" name="endtime"
+												id="endtime"> <label class="label--desc">End
+												Time</label>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="name"></div>
+							<div class="value">
+								<div class="input-group">
+									<button class="btn btn--radius-2 btn--red" type="submit"
+										id="fetchlogsbutton">Fetch Records</button>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<jsp:include page="footer.jsp" />
 
@@ -93,13 +141,19 @@
 	<script type="text/javascript" charset="utf8"
 		src="https://code.jquery.com/jquery-3.5.1.js"></script>
 	<script type="text/javascript" charset="utf8"
-		src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+		src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js">
+		
+	</script>
 	<script type="text/javascript" charset="utf8"
-		src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+		src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js">
+		
+	</script>
 	<script type="text/javascript" charset="utf8"
 		src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
 	<script type="text/javascript" charset="utf8"
-		src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+		src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js">
+		
+	</script>
 	<script type="text/javascript" charset="utf8"
 		src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
 	<script type="text/javascript" charset="utf8"
@@ -109,8 +163,10 @@
 	<script type="text/javascript" charset="utf8"
 		src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.print.min.js"></script>
 
-	<script src="resources/js/date.js"></script>
+	<script src="resources/js/moment.min.js"></script>
 	<script src="resources/js/daterangepicker.js"></script>
+
+	<script src="resources/js/date.js"></script>
 
 	<!-- Custom Script JavaScript -->
 	<script src="resources/js/getuserlogs.js"></script>

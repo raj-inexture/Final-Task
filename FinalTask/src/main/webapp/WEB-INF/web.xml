@@ -94,6 +94,12 @@
 		<description></description>
 		<servlet-class>controller.EmailVerificationServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>FetchUserLogsServlet</servlet-name>
+		<display-name>FetchUserLogsServlet</display-name>
+		<description></description>
+		<servlet-class>controller.FetchUserLogsServlet</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>LoginServlet</servlet-name>
@@ -150,6 +156,10 @@
 	<servlet-mapping>
 		<servlet-name>EmailVerificationServlet</servlet-name>
 		<url-pattern>/EmailVerificationServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>FetchUserLogsServlet</servlet-name>
+		<url-pattern>/FetchUserLogsServlet</url-pattern>
 	</servlet-mapping>
 
 	<welcome-file-list>

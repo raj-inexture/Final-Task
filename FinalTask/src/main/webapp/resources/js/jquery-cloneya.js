@@ -9,24 +9,25 @@
 
     "use strict";
 
-    var name = "cloneya", defaults = {
-        cloneThis: '.toclone',
-        cloneButton: '.clone',
-        deleteButton: '.delete',
-        clonePosition: 'after',
-        minimum: 1,
-        // renaming limit
-        maximum: 999, //setting it to a high number, by default
+    var name = "cloneya",
+        defaults = {
+            cloneThis: '.toclone',
+            cloneButton: '.clone',
+            deleteButton: '.delete',
+            clonePosition: 'after',
+            minimum: 1,
+            // renaming limit
+            maximum: 999, //setting it to a high number, by default
 
-        //limit: 999,
+            //limit: 999,
 
-        valueClone: false,
-        dataClone: false,
-        deepClone: false,
-        serializeID: true,
-        ignore: 'label.error',
-        preserveChildCount: false
-    };
+            valueClone: false,
+            dataClone: false,
+            deepClone: false,
+            serializeID: true,
+            ignore: 'label.error',
+            preserveChildCount: false
+        };
     /**
      * Create the class CloneYa
      * 
@@ -68,8 +69,8 @@
         this.elem = element;
 
         this.$elem = $(element);
-	
-	this.elemClass = name + '-wrap';
+
+        this.elemClass = name + '-wrap';
 
         /**
          * creating a jQuery object, just in case
@@ -166,8 +167,7 @@
                     $this.$elem.triggerHandler('remove.' + name, [toDelete]);
                     $this.$elem.triggerAll('clone_after_delete after_delete.' + name);
 
-                }
-                else {
+                } else {
 
                     $this.$elem.triggerHandler('minimum.' + name, $this.config.minimum, [toDelete]);
 
@@ -342,8 +342,7 @@
                 if ($el.is(':checkbox') || $el.is(':radio')) {
 
                     $el.prop('checked', false);
-                }
-                else {
+                } else {
                     $el.val('');
                 }
 
@@ -450,8 +449,7 @@
      * @param {type} options
      * @returns {jquery-cloneya_L8.$.fn@call;each}
      */
-    $.fn[name] = function (options)
-    {
+    $.fn[name] = function (options) {
         var args = arguments;
 
         if (options === undefined || typeof options === 'object') {
@@ -523,7 +521,8 @@
      */
     $.fn.extend({
         triggerAll: function (events, params) {
-            var el = this, i, evts = events.split(' ');
+            var el = this,
+                i, evts = events.split(' ');
             for (i = 0; i < evts.length; i += 1) {
                 el.triggerHandler(evts[i], params);
             }
